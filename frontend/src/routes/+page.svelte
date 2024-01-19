@@ -22,7 +22,7 @@
     <a href="/account">Account</a>
   </li>
   <li>
-    <a href="/main">Projects</a>
+    <a href="/projects">Projects</a>
   </li>
   <li>
     <a href="/notes">Notes</a>
