@@ -3,7 +3,7 @@ An offline-first todo app with the option to save your data to an online data st
 
 
 ## Considerations
-As of 2024, January, this app is to be written in either SolidJS, or Svelte. While we could use either Angular, React, or Vue, I want to make this using one of the two upcoming starlet frameworks of 2023, 2024. Using either Svelte or SolidJS will allow us to reduce the default size of the application. As this will be a desktop app running on the operating system's web view library, we will use the rust Tauri package/library/crate to render the JavaScript framework as if it were a native desktop application.
+As of 2024, January, this app is to be written in either SolidJS, or Svelte. While we could use either Angular, React, or Vue, I want to make this using one of the two upcoming starlet frameworks of 2023, 2024. Using either Svelte or SolidJS will allow us to reduce the default size of the application. As this will be a desktop app running on the operating system's web view library, we will use either the Rust Tauri crate or Golang Wails framework to render the JavaScript framework as if it were a native desktop application.
 
 ## Design
 Version 1.0 will feature two views – a table of tasks with sub-tasks, and a list of documentation nodes. The User Interface (UI) should be minimal, but easy to learn and navigate.
