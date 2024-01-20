@@ -2,7 +2,7 @@
 
 </script>
 
-<h1>Signup Screen</h1>
+<h1>Create Account</h1>
 <button 
   type="button"
 >

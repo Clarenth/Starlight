@@ -19,13 +19,7 @@
 
 <ul>
   <li>
-    <a href="/account">Account</a>
-  </li>
-  <li>
     <a href="/projects">Projects</a>
-  </li>
-  <li>
-    <a href="/notes">Notes</a>
   </li>
   <li>
     <a href="/signup">Create Account</a>

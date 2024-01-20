@@ -9,6 +9,15 @@
   <a href="/">Signin Page</a>
 </button>
 
+<button>
+  <a href="/account">Account</a>
+</button>
+
+<button>
+  <a href="/notes">Notes</a>
+</button>
+
+
 <style>
 
 </style>
