@@ -1,5 +1,7 @@
 <script>
-
+	import Notes from "./_components/notes/Notes.svelte";
+  import ProjectTable from "./_components/project/ProjectTable.svelte";
+  import Sidebar from "./_components/Sidebar.svelte";
 </script>
 
 <h1>Projects Screen</h1>
@@ -17,6 +19,11 @@
   <a href="/notes">Notes</a>
 </button>
 
+<main>
+  <Sidebar />
+  <ProjectTable />
+  <Notes />
+</main>
 
 <style>
 

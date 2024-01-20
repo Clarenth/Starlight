@@ -2,7 +2,7 @@
 
 </script>
 
-<h1>Notes Screen</h1>
+<h1>Profile Screen</h1>
 <button 
   type="button"
 >
