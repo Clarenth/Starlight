@@ -19,12 +19,15 @@
   <a href="/notes">Notes</a>
 </button>
 
-<main>
+<nav>
   <Sidebar />
+</nav>
+
+<main>
   <ProjectTable />
   <Notes />
 </main>
 
-<style>
+<style lang="postcss">
 
 </style>

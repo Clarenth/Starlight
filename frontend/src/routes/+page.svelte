@@ -1,35 +1,42 @@
-<script>
+<script lang="ts">
+  import CreateAccount from "./CreateAccount.svelte";
+  import Login from "./Login.svelte"
+	import ProfileDropdown from "./ProfileDropdown.svelte";
 
+  const data = [
+    {
+      q: "John",
+    },
+    {
+      q: "Smith",
+    }
+  ];
+
+  // const data:any = [];
 </script>
-<!-- <h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p> -->
 
-<h1>Starlight</h1>
+<main class="flex flex-col items-center justify-center h-screen bg-[#2c2c2c] text-white">
+  <h1 class="font-bold text-2xl">Starlight</h1>
+  <img alt="" src=""/>
+  
+  <div class="flex flex-col justify-center items-center bg-[#3a3a3a] rounded shadow-lg p-12 mt-12">
+    <section id="profile-list">
+      {#each data as { q }}
+        <ProfileDropdown profile={{ name: q }} />
+      {/each}
+    </section>
+    <section id="create-account">
+      <CreateAccount />
+    </section>
+  </div>
+  
+  <ul>
+    <li>
+      <a href="/projects">Projects</a>
+    </li>
+  </ul>
+</main>
 
-<input 
-  type="text"
-  alt="Username"
-  id="username"
-/>
-<input 
-  type="password" 
-  alt="Password"
-  id="password"
-/>
-
-<ul>
-  <li>
-    <a href="/projects">Projects</a>
-  </li>
-  <li>
-    <a href="/signup">Create Account</a>
-  </li>
-</ul>
-
-<button type="submit">
-  Login
-</button>
-
-<style>
+<style lang="postcss">
 
 </style>
