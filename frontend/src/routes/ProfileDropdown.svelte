@@ -6,7 +6,7 @@
   const toggle = () => (isOpen = !isOpen);
 </script>
 
-<button class="flex w-72" on:click={toggle} aria-expanded={isOpen}
+<button class="flex w-72 border-b border-separate border-white" on:click={toggle} aria-expanded={isOpen}
   ><svg
     class="mr-1"
     width="20"
@@ -23,16 +23,16 @@
 
 <div class="mt-4 mb-4 shadow-xl">
   {#key isOpen}
-    <div class="flex flex-col items-center justify-center bg-[#474747]" class:hidden={!isOpen} transition:slide={{ duration: 300 }}>
+    <div class="flex flex-col items-center justify-center border border-separate border-[#252525] bg-[#474747] text-lg" class:hidden={!isOpen} transition:slide={{ duration: 300 }}>
       <img alt="" src="" />
       <input 
         id="password"  
         name="password" 
         type="password" 
         placeholder="password"
-        class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 rounded focus:outline-none focus:ring-2" 
+        class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
       />
-      <button type="submit" class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 mb-2 rounded focus:outline-none focus:ring-2">
+      <button type="submit" class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 mb-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2">
         Login
       </button>
     </div>

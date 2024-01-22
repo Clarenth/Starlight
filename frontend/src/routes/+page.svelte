@@ -2,38 +2,39 @@
   import CreateAccount from "./CreateAccount.svelte";
 	import ProfileDropdown from "./ProfileDropdown.svelte";
 
+  import logo from "$lib/images/logo.png"
+  // let src = '$lib/images/logo.png';
+    
   const data = [
     {
       q: "John",
-    },
-    {
-      q: "Smith",
     },
   ];
 
   // const data:any = [];
 </script>
+<main id="main" class="flex flex-col justify-center items-center bg-[#252525] text-white text-lg py-16">
+  <section id="img-logo" class="flex flex-col items-center justify-center h-auto text-white text-lg">
+    <h1 id="Starlight title" placeholder="Starlight" class="font-bold text-2xl">Starlight</h1>
+    <img 
+    src={logo}
+    alt="logo" 
+    placeholder="Starlight logo"
+    class="w-52"
+    />
+  </section>
 
-<main class="flex flex-col items-center justify-center h-screen bg-[#252525] text-white">
-  <h1 class="font-bold text-2xl">Starlight</h1>
-  <img alt="" src=""/>
-  
-  <div class="flex flex-col justify-center items-center bg-[#3a3a3a] rounded shadow-lg p-12 mt-12">
-    <section id="profile-list">
+  <section class="flex flex-col justify-center items-center bg-[#3a3a3a] shadow-lg p-12 mt-12 focus:outline-none focus:ring-2">
+    <div id="profile-list">
       {#each data as { q }}
         <ProfileDropdown profile={{ name: q }} />
       {/each}
-    </section>
-    <section id="create-account">
+    </div>
+    <div id="create-account">
       <CreateAccount />
-    </section>
-  </div>
-  
-  <ul>
-    <li>
-      <a href="/projects">Projects</a>
-    </li>
-  </ul>
+    </div>
+  </section>
+  <a href="/projects">Projects</a>
 </main>
 
 <style lang="postcss">
