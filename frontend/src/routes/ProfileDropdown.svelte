@@ -21,31 +21,28 @@
   {name}
 </button>
 
-<div class="ml-6 mb-4">
+<div class="mt-4 mb-4 shadow-xl">
   {#key isOpen}
-    <div class="" class:hidden={!isOpen} transition:slide={{ duration: 300 }}>
+    <div class="flex flex-col items-center justify-center bg-[#474747]" class:hidden={!isOpen} transition:slide={{ duration: 300 }}>
       <img alt="" src="" />
-      <label for="password">Password</label>
       <input 
         id="password"  
         name="password" 
         type="password" 
+        placeholder="password"
         class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 rounded focus:outline-none focus:ring-2" 
       />
+      <button type="submit" class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 mb-2 rounded focus:outline-none focus:ring-2">
+        Login
+      </button>
     </div>
+    <!-- <button class="flex items-center justify-center h-12 px-6 w-64 bg-[#252525] hover:bg-[#1b1b1b] mt-8 rounded font-semibold text-white">Login</button> -->
+
   {/key}
 </div>
 
 <style>
-  button {
-    border: none;
-    background: none;
-    color: inherit;
-    cursor: pointer;
-    margin: 0;
-    padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
-  }
+
 
   svg {
 		flex-shrink: 0;
@@ -55,12 +52,7 @@
   [aria-expanded="true"] svg {
     transform: rotate(0.25turn);
   }
-	
-	p {
-		margin: 0;
-		margin-left: 1rem;
-		color: #777;
-	}
+  
 	.flex {
 		display: flex;
 	}

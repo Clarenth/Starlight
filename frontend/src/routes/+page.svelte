@@ -1,6 +1,5 @@
 <script lang="ts">
   import CreateAccount from "./CreateAccount.svelte";
-  import Login from "./Login.svelte"
 	import ProfileDropdown from "./ProfileDropdown.svelte";
 
   const data = [
@@ -9,13 +8,13 @@
     },
     {
       q: "Smith",
-    }
+    },
   ];
 
   // const data:any = [];
 </script>
 
-<main class="flex flex-col items-center justify-center h-screen bg-[#2c2c2c] text-white">
+<main class="flex flex-col items-center justify-center h-screen bg-[#252525] text-white">
   <h1 class="font-bold text-2xl">Starlight</h1>
   <img alt="" src=""/>
   

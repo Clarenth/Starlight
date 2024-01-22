@@ -19,50 +19,43 @@
   <h1>Create Account</h1>
 </button>
 
-<div class="ml-6">
+<div class="shadow-xl">
   {#key isOpen}
-    <form on:submit|preventDefault action="#" method="post" class="" class:hidden={!isOpen} transition:slide={{ duration: 300 }}>
-      <label for="profile-name">Profile Name</label>
+    <form on:submit|preventDefault action="#" method="post" class="flex flex-col items-center justify-center bg-[#474747]" class:hidden={!isOpen} transition:slide={{ duration: 300 }}>
+      <label class="mt-2" for="profile-name">Profile Name</label>
       <input 
         id="profile-name" 
         name="profile-name" 
         placeholder="Profile Name"
         type="text" 
-        class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white  rounded focus:outline-none focus:ring-2" 
+        class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mb-2 rounded focus:outline-none focus:ring-2" 
       />
 
-      <label for="password">Password</label>
+      <label class="mt-2" for="password">Password</label>
       <input 
           id="password"  
           name="password" 
           type="password" 
           placeholder="Password"
-          class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white rounded focus:outline-none focus:ring-2" 
+          class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mb-2 rounded focus:outline-none focus:ring-2" 
       />
       
-      <label class="" for="confirm-password">Confirm Password</label>
+      <label class="mt-2" for="confirm-password">Confirm Password</label>
       <input 
           id="confirm-password"  
           name="confirm-password" 
           type="password" 
           placeholder="Confirm Password"
-          class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white rounded focus:outline-none focus:ring-2" 
+          class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mb-2 rounded focus:outline-none focus:ring-2" 
       />
+      <button type="submit" class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 mb-2 rounded focus:outline-none focus:ring-2">
+        Create Account
+      </button>
     </form>
   {/key}
 </div>
 
 <style>
-  button {
-    border: none;
-    background: none;
-    color: inherit;
-    cursor: pointer;
-    margin: 0;
-    padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
-  }
-
   svg {
 		flex-shrink: 0;
     transition: transform 0.2s ease-in;
@@ -72,11 +65,6 @@
     transform: rotate(0.25turn);
   }
 	
-	p {
-		margin: 0;
-		margin-left: 1rem;
-		color: #777;
-	}
 	.flex {
 		display: flex;
 	}
