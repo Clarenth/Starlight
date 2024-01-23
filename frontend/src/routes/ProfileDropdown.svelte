@@ -4,6 +4,10 @@
   const { name } = profile;
   let isOpen = false;
   const toggle = () => (isOpen = !isOpen);
+
+  const handleLogin = () => {
+    
+  }
 </script>
 
 <button class="flex w-72 border-b border-separate border-white" on:click={toggle} aria-expanded={isOpen}
@@ -32,12 +36,14 @@
         placeholder="password"
         class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
       />
-      <button type="submit" class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 mb-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2">
-        Login
+      <button 
+        id="login-btn"
+        type="submit" 
+        class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 mb-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2"
+      >
+        <a href="/projects">Login</a>
       </button>
     </div>
-    <!-- <button class="flex items-center justify-center h-12 px-6 w-64 bg-[#252525] hover:bg-[#1b1b1b] mt-8 rounded font-semibold text-white">Login</button> -->
-
   {/key}
 </div>
 

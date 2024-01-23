@@ -51,9 +51,15 @@
           placeholder="Confirm Password"
           class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mb-2 border border-separate border-[#252525] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
       />
-      <button type="submit" class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 mb-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2">
+      <!-- <button type="submit" class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 mb-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2">
+        <a href="/projects">Create Account</a>
+      </button> -->
+      <a 
+        href="/projects"
+        class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mb-2 border border-separate border-[#252525] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2"
+      >
         Create Account
-      </button>
+      </a>
     </form>
   {/key}
 </div>
