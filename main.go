@@ -3,7 +3,10 @@ package main
 import (
 	"context"
 	"embed"
+	"log"
+	"net/http"
 
+	"starlight/internal/auth"
 	"starlight/internal/db"
 
 	"github.com/wailsapp/wails/v2"
@@ -17,7 +20,12 @@ var assets embed.FS
 func main() {
 	// Create an instance of the app structure
 	app := NewApp()
+	auth := auth.New()
 	repo := db.NewDB()
+
+	go func() {
+		log.Println(http.ListenAndServe("localhost:6060", nil))
+	}()
 
 	// Create application with options
 	err := wails.Run(&options.App{
@@ -38,6 +46,7 @@ func main() {
 		Bind: []interface{}{
 			app,
 			repo,
+			auth,
 		},
 		// OnShutdown: ,
 		// OnBeforeClose: ,

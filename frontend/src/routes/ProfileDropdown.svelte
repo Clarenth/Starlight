@@ -1,12 +1,21 @@
-<script>
+<script lang="ts">
+  // Svelte
   import { slide } from "svelte/transition";
+  // Wails
+  import { Login } from "$lib/wailsjs/go/auth/auth"
+  // UI Components
+	import Button from "$lib/components/ui/button/button.svelte";
+  // JavaScript
   export let profile;
   const { name } = profile;
   let isOpen = false;
   const toggle = () => (isOpen = !isOpen);
 
-  const handleLogin = () => {
-    
+  const handleLogin = (username: string, password: string) => {
+    Login(username, password)
+      .then((result: Boolean) => {
+        console.log(result)
+      })
   }
 </script>
 
@@ -27,8 +36,7 @@
 
 <div class="mt-4 mb-4 shadow-xl">
   {#key isOpen}
-    <div class="flex flex-col items-center justify-center border border-separate border-[#252525] bg-[#474747] text-lg" class:hidden={!isOpen} transition:slide={{ duration: 300 }}>
-      <img alt="" src="" />
+    <form class="flex flex-col items-center justify-center border border-separate border-[#252525] bg-[#474747] text-lg" class:hidden={!isOpen} transition:slide={{ duration: 300 }}>
       <input 
         id="password"  
         name="password" 
@@ -36,20 +44,21 @@
         placeholder="password"
         class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
       />
-      <button 
-        id="login-btn"
-        type="submit" 
-        class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 mb-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2"
+      <Button 
+        href="/projects"
+        variant="default"
+        class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] rounded-none text-white text-lg mt-2 mb-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2"
+        on:click={(e) => {
+          
+        }}
       >
-        <a href="/projects">Login</a>
-      </button>
-    </div>
+        Login
+      </Button>
+    </form>
   {/key}
 </div>
 
 <style>
-
-
   svg {
 		flex-shrink: 0;
     transition: transform 0.2s ease-in;

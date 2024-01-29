@@ -37,5 +37,15 @@
 		"vite": "^5.0.3",
 		"vitest": "^1.2.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"bits-ui": "^0.15.1",
+		"clsx": "^2.1.0",
+		"formsnap": "^0.4.3",
+		"lucide-svelte": "^0.314.0",
+		"sveltekit-superforms": "^1.13.4",
+		"tailwind-merge": "^2.2.1",
+		"tailwind-variants": "^0.1.20",
+		"zod": "^3.22.4"
+	}
 }

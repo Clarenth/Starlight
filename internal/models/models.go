@@ -9,6 +9,10 @@ type Account struct {
 	UpdatedAt    string `json:"updated_at"`
 }
 
+func NewAccount() *Account {
+	return &Account{}
+}
+
 type Note struct {
 	ID        string `json:"id"`
 	Title     string `json:"title"`

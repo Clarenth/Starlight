@@ -1,10 +1,15 @@
 <script lang="ts">
+  // Libraries
+
+  // Page Components
   import CreateAccount from "./CreateAccount.svelte";
 	import ProfileDropdown from "./ProfileDropdown.svelte";
+  
+  // UI Components
+  import { Button } from "$lib/components/ui/button"
 
+  // Assets
   import logo from "$lib/images/logo.png"
-  // let src = '$lib/images/logo.png';
-
   
   /* Leave as example
   import { LoadAccountData, SaveUserToDB, PrintDB } from "$lib/wailsjs/go/repo/DB";
@@ -31,7 +36,7 @@
       src={logo}
       alt="logo" 
       placeholder="Starlight logo"
-      class="w-52"
+      class="w-40"
     />
   </section>
 
@@ -46,11 +51,9 @@
     </div>
   </section>
 
-  <section id="click-me" class="flex flex-col justify-center items-center bg-[#3a3a3a] shadow-lg p-12 mt-12 focus:outline-none focus:ring-2">
-    <button id="greeting">
-      Greet
-    </button>
-  </section>
+  <Button href="/projects" class="flex flex-col justify-center items-center bg-[#3a3a3a] shadow-lg mt-12 text-lg focus:outline-none focus:ring-2">
+    Login Test Button
+  </Button>
   <a href="/projects">Projects</a>
 </main>
 
