@@ -5,18 +5,22 @@
   import { Login } from "$lib/wailsjs/go/auth/auth"
   // UI Components
 	import Button from "$lib/components/ui/button/button.svelte";
+	import Input from "$lib/components/ui/input/input.svelte";
   // JavaScript
-  export let profile;
-  const { name } = profile;
-  let isOpen = false;
-  const toggle = () => (isOpen = !isOpen);
-
+  let username: string;
+  let password: string;
   const handleLogin = (username: string, password: string) => {
     Login(username, password)
       .then((result: Boolean) => {
         console.log(result)
       })
   }
+
+  export let profile;
+  const { name } = profile;
+  let isOpen = false;
+  const toggle = () => (isOpen = !isOpen);
+
 </script>
 
 <button class="flex w-72 border-b border-separate border-white" on:click={toggle} aria-expanded={isOpen}
@@ -36,18 +40,19 @@
 
 <div class="mt-4 mb-4 shadow-xl">
   {#key isOpen}
-    <form class="flex flex-col items-center justify-center border border-separate border-[#252525] bg-[#474747] text-lg" class:hidden={!isOpen} transition:slide={{ duration: 300 }}>
-      <input 
+    <form method="post" class="flex flex-col items-center justify-center bg-[#474747] text-lg border border-separate border-[#252525]" class:hidden={!isOpen} transition:slide={{ duration: 300 }}>
+      <Input 
         id="password"  
         name="password" 
         type="password" 
         placeholder="password"
-        class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
+        value={password}
+        class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] rounded-none text-white text-lg mt-2 mb-2 hover:bg-[#1b1b1b] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
       />
       <Button 
         href="/projects"
         variant="default"
-        class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] rounded-none text-white text-lg mt-2 mb-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2"
+        class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] rounded-none text-white text-lg mt-2 mb-2 hover:bg-[#1b1b1b] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
         on:click={(e) => {
           
         }}

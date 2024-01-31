@@ -1,7 +1,18 @@
-<script>
+<script lang="ts">
+  // Svelte
   import { slide } from "svelte/transition";
+  // Wails
+  import { CreateAccount } from "$lib/wailsjs/go/auth/auth"
+  // Libraries
+  import Button from "$lib/components/ui/button/button.svelte";
+	import Input from "$lib/components/ui/input/input.svelte";
+
   let isOpen = false;
   const toggle = () => (isOpen = !isOpen);
+
+  let username: String;
+  let password: String;
+  let confirmPassword: String;
 </script>
 
 <div class="border-b border-separate border-white mb-4">
@@ -26,7 +37,7 @@
   {#key isOpen}
     <form on:submit|preventDefault action="#" method="post" class="flex flex-col items-center justify-center bg-[#474747] text-lg border border-separate border-[#252525]" class:hidden={!isOpen} transition:slide={{ duration: 300 }}>
       <label class="mt-2" for="profile-name">Profile Name</label>
-      <input 
+      <Input 
         id="profile-name" 
         name="profile-name" 
         placeholder="Profile Name"
@@ -35,7 +46,7 @@
       />
 
       <label class="mt-2" for="password">Password</label>
-      <input 
+      <Input 
           id="password"  
           name="password" 
           type="password" 
@@ -44,22 +55,33 @@
       />
       
       <label class="mt-2" for="confirm-password">Confirm Password</label>
-      <input 
+      <Input 
           id="confirm-password"  
           name="confirm-password" 
           type="password" 
           placeholder="Confirm Password"
+          value={confirmPassword}
           class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mb-2 border border-separate border-[#252525] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
       />
+      <Button 
+        href="/projects"
+        variant="default"
+        class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] rounded-none text-white text-lg mt-2 mb-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2"
+        on:click={(e) => {
+          
+        }}
+      >
+        Create Profile
+      </Button>
       <!-- <button type="submit" class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mt-2 mb-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2">
         <a href="/projects">Create Account</a>
       </button> -->
-      <a 
+      <!-- <a 
         href="/projects"
-        class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mb-2 border border-separate border-[#252525] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2"
-      >
+        class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] rounded-none text-white text-lg mt-2 mb-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2"
+        >
         Create Account
-      </a>
+      </a> -->
     </form>
   {/key}
 </div>

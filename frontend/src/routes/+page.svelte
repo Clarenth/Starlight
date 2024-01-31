@@ -2,8 +2,8 @@
   // Libraries
 
   // Page Components
-  import CreateAccount from "./CreateAccount.svelte";
-	import ProfileDropdown from "./ProfileDropdown.svelte";
+  import CreateAccount from "./_components/CreateAccount.svelte";
+	import ProfileDropdown from "./_components/ProfileDropdown.svelte";
   
   // UI Components
   import { Button } from "$lib/components/ui/button"
@@ -27,7 +27,6 @@
     },
   ];
 
-  // const data:any = [];
 </script>
 <main id="main" class="flex flex-col justify-center items-center bg-[#252525] text-white text-lg py-16">
   <section id="img-logo" class="flex flex-col items-center justify-center h-auto text-white text-lg">

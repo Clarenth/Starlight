@@ -4,8 +4,9 @@
   import Sidebar from "./_components/Sidebar.svelte";
 </script>
 
-<h1>Projects Screen</h1>
-<button 
+<!-- <h1>Projects Screen</h1> -->
+
+<!-- <button 
   type="button"
 >
   <a href="/">Signin Page</a>
@@ -17,15 +18,13 @@
 
 <button>
   <a href="/notes">Notes</a>
-</button>
-
-<nav>
+</button> -->
+<main class="flex flex-row">
   <Sidebar />
-</nav>
-
-<main>
-  <ProjectTable />
-  <Notes />
+  <section class="flex flex-1 h-screen"> <!--h-full -->
+    <ProjectTable />
+    <Notes />
+  </section>
 </main>
 
 <style lang="postcss">
