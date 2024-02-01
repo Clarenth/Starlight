@@ -6,13 +6,11 @@
   ]
 
 </script>
-<nav class="leftsidebar">
-  <button>
-    <a href="/profile">Profile</a>
-  </button>
+<nav class="leftsidebar flex-col">
+  <p>Projects list</p>
   
   {#each projectsList as project}
-    <ul>
+    <ul class="flex-center justify-around hover:bg-gray-50/15 transition">
       <li>
         <button type="button">{project.name}</button>
       </li>
