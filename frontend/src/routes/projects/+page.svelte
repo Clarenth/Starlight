@@ -10,7 +10,7 @@
 </script>
 
 <!-- <main class="flex flex-row"> -->
-<div class="flex flex-1">
+<!-- <div class="flex flex-1">
   <Sidebar />
   <header class="flex flex-row sticky px-2 underline">
     <Button class="justify-center items-center gap bg-inherit shadow-lg text-base hover:bg-[#3a3a3a] focus:outline-none focus:ring-2">
@@ -21,9 +21,13 @@
     </Button>
   </header>
   <main class="flex flex-row h-screen w-full md:flex"> <!--h-full -->
-    <ProjectTable />
+    <!-- <ProjectTable />
     <Notes />
   </main>
+</div> -->
+
+<div class="w">
+
 </div>
 
 <style lang="postcss">
