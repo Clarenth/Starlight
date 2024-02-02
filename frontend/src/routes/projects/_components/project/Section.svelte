@@ -2,11 +2,27 @@
   import Task from "./Task.svelte";
 </script>
 
-<div class="flex-col flex-shrink-0 space-y-2 scroll-pb-60">
+<div class="flex-col flex-shrink-0 space-y-2 h-screen">
   <h1>Title of Sections</h1>
-  <Task />
-  <Task />
-  <Task />
+  <div class="space-y-2 h-screen overflow-scroll">
+    <Task />
+    <Task />
+    <Task />
+    <Task />
+    <Task />
+    <Task />
+    <Task />
+    <Task />
+    <Task />
+    <Task />
+    <Task />
+    <Task />
+    <Task />
+    <Task />
+  </div>
+  <footer class="">
+    
+  </footer>
 </div>
   
 <style>

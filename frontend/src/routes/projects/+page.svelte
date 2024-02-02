@@ -12,7 +12,7 @@
   }
 </script>
 
-<div class="flex w-full h-screen">
+<div class="flex">
   <Sidebar />
   <div class="px-2">
     <header class="flex flex-row sticky pt-3 pb-3 underline">
@@ -23,8 +23,8 @@
         Docs
       </Button>
     </header>
-    <main class="flex flex-row w-full mt-2"> <!--h-full -->
-      <section>
+    <main class="flex flex-row mt-2"> <!--h-full -->
+      <section class="w-screen h-screen">
         <Table />
       </section>
       <section>
