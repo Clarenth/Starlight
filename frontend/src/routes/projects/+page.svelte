@@ -2,27 +2,34 @@
   // Components
   import Sidebar from "./_components/Sidebar.svelte";
   import Notes from "./_components/notes/Notes.svelte";
-  import ProjectTable from "./_components/project/ProjectTable.svelte";
+  import Table from "./_components/project/Table.svelte";
 
   // UI Components
   import Button from "$lib/components/ui/button/button.svelte";
 
+  function isActive() {
+
+  }
 </script>
 
 <div class="flex w-full h-screen">
   <Sidebar />
-  <div>
-    <header class="flex flex-row sticky px-2 underline">
+  <div class="px-2">
+    <header class="flex flex-row sticky py-1 underline">
       <Button class="justify-center items-center gap bg-inherit shadow-lg text-base hover:bg-[#3a3a3a] focus:outline-none focus:ring-2">
-        Table
+        Tasks
       </Button>
       <Button class="justify-center items-center bg-inherit shadow-lg text-base hover:bg-[#3a3a3a] focus:outline-none focus:ring-2">
         Docs
       </Button>
     </header>
-    <main class="flex flex-row h-screen w-full md:flex"> <!--h-full -->
-      <ProjectTable />
-      <Notes />
+    <main class="flex flex-row w-full mt-2"> <!--h-full -->
+      <section>
+        <Table />
+      </section>
+      <section>
+        <!-- <Notes /> -->
+      </section>
     </main>
   </div>
 </div>
