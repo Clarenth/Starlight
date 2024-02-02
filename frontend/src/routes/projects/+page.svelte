@@ -15,7 +15,7 @@
 <div class="flex">
   <Sidebar />
   <div class="px-2">
-    <header class="flex flex-row sticky pt-3 pb-3 underline">
+    <header class="flex flex-row sticky pt-3 underline">
       <Button class="justify-center items-center gap bg-inherit shadow-lg text-base hover:bg-[#3a3a3a] focus:outline-none focus:ring-2">
         Tasks
       </Button>
