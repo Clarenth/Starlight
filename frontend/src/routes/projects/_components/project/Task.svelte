@@ -3,8 +3,8 @@
   import Edit from "$lib/images/edit-dark-svgrepo-com.svg"
 </script>
 
-<div class="flex flex-row mt-3 gap-2 shadow-lg bg-[#303030] border border-black hover:border-white transition focus:outline-none focus:ring-2">
-  <div class="flex flex-col ml-1 justify-between">
+<div class="flex flex-row gap-2 shadow-lg bg-[#303030] border border-black hover:border-white transition focus:outline-none focus:ring-2">
+  <div class="flex flex-col gap-2 justify-between">
     <img 
       src={Edit}
       alt="Finished"
@@ -16,10 +16,12 @@
       class="w-6 rounded-full mb-1 hover:bg-black transition-all"
     />
   </div>
-  <div class="flex flex-col justify-start items-start gap min-w-60 max-w-60 text-wrap break-all">
+  <div class="flex flex-col justify-start items-start gap-1 min-w-72 max-w-72 text-wrap break-all">
     <h3>Investigate qOwnNotes for self-hosting</h3>
-    <p class="text-wrap break-all">Description</p>
-    <p>Due Date</p>
+    <p class="text-sm">
+      Find out if qOwnNotes is a good notes app
+    </p>
+    <!-- <p>Due Date</p> -->
   </div>
 </div>
 
