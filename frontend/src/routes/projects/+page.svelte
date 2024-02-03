@@ -6,13 +6,14 @@
 
   // UI Components
   import Button from "$lib/components/ui/button/button.svelte";
+	import Section from "./_components/project/Section.svelte";
 
   function isActive() {
 
   }
 </script>
 
-<div class="antialiased">
+<div class="antialiased h-screen flex light:bg-white">
   <!-- <nav class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
     <div class="flex flex-wrap justify-between items-center">
       <div class="flex justify-start items-center">
@@ -31,7 +32,7 @@
 
   <!-- Sidebar -->
   <aside
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-5 transition-transform -translate-x-full bg-[#303030] border-r border-gray-400 md:translate-x-0"
+    class="flex-none block top-0 left-0 z-40 w-36 pt-16 transition-transform -translate-x-full bg-[#303030] border-r border-gray-400 md:translate-x-0"
     aria-label="Sidenav"
     id="drawer-navigation"
   >
@@ -118,24 +119,23 @@
     </div>
   </aside>
 
+  
   <!-- Project Table -->
-  <main class="p-4 md:ml-64 h-auto pt-20">
-    <div class="flex">
-      <nav class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
-        <div class="flex flex-wrap justify-between items-center">
-          <div class="flex justify-start items-center">
-            <Button class="justify-center items-center gap bg-inherit shadow-lg text-base hover:bg-[#3a3a3a] focus:outline-none focus:ring-2">
-              Tasks
-            </Button>
-            <Button class="justify-center items-center bg-inherit shadow-lg text-base hover:bg-[#3a3a3a] focus:outline-none focus:ring-2">
-              Docs
-            </Button>
-          </div>
-          <div class="flex items-center lg:order-2">
-
-          </div>
-        </div>
-      </nav>
+  <main class="flex-1 flex flex-col overflow-hidden"> <!--p-4 md:ml-64 h-auto -->
+    <!--Header-->
+    <nav class="flex px-6 py-2 items-center flex-none">
+      <div class="flex flex-row">
+        <Button class="justify-center items-center gap bg-inherit shadow-lg text-base hover:bg-gray-50/15 focus:outline-none focus:ring-2">
+          Tasks
+        </Button>
+        <Button class="justify-center items-center bg-inherit shadow-lg text-base hover:bg-gray-50/15 focus:outline-none focus:ring-2">
+          Docs
+        </Button>
+      </div>
+    </nav>
+    <!-- Project Table -->
+    <div class="px-6 py-4 flex-1 overflow-scroll">
+      <Table />
     </div>
   </main>
 </div>
