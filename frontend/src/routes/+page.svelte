@@ -53,7 +53,6 @@
   <Button href="/projects" class="flex flex-col justify-center items-center bg-[#3a3a3a] shadow-lg mt-12 text-lg focus:outline-none focus:ring-2">
     Login Test Button
   </Button>
-  <a href="/projects">Projects</a>
 </main>
 
 <style lang="postcss">
