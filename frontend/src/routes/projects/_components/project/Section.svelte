@@ -1,4 +1,6 @@
 <script>
+	import Button from "$lib/components/ui/button/button.svelte";
+import NewTask from "./NewTask.svelte";
   import Task from "./Task.svelte";
 </script>
 
@@ -8,6 +10,7 @@
   </header>
   <div class="">
     <Task />
+    <!-- <Task />
     <Task />
     <Task />
     <Task />
@@ -19,11 +22,12 @@
     <Task />
     <Task />
     <Task />
-    <Task />
-    <Task />
+    <Task /> -->
   </div>
-  <footer class="flex">
-    test
+  <footer class="flex justify-center hover:visible">
+    <Button class="w-full justify-center items-center gap bg-inherit shadow-lg text-base hover:bg-gray-50/5 focus:outline-none focus:ring-2">
+      Tasks
+    </Button>
   </footer>
 </div>
   
