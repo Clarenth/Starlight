@@ -19,9 +19,9 @@
   <div class="flex-col justify-start items-start py-1 pr-1 max-w-72">
     <h3 class="">Investigate qOwnNote for testing of the new</h3>
     <hr class="bg-white">
-    <p class="text-sm line-clamp-3 break-normal overflow-hidden">
+    <small class="line-clamp-3 break-normal overflow-hidden">
       Officially recognized by the Duden dictionary as the longest word in German, Kraftfahrzeughaftpflichtversicherung is a 36 letter word for motor vehicle liability insurance.
-    </p>
+    </small>
     <!-- <p>Due Date</p> -->
   </div>
 </div>

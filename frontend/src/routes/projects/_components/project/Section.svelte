@@ -1,16 +1,26 @@
-<script>
+<script lang="ts">
+
+  // Components
 	import Button from "$lib/components/ui/button/button.svelte";
-import NewTask from "./NewTask.svelte";
+  import NewTask from "./NewTask.svelte";
   import Task from "./Task.svelte";
+
+  // UI Components
+  import Modal from "$lib/components/ui/modal/modal.svelte"
+  import Textarea from "$lib/components/ui/textarea/textarea.svelte";
+
+  // JavaScript
+  let title: string;
+  let description: string;
+  let showModal: Boolean = false;
 </script>
 
-<div class="flex-col flex-shrink-0 overflow-x-scroll">
+<div class="flex-col flex-shrink-0 overflow-x-scroll pr-1">
   <header class="">
     <h1>Title of Sections</h1>
   </header>
   <div class="">
     <Task />
-    <!-- <Task />
     <Task />
     <Task />
     <Task />
@@ -22,12 +32,38 @@ import NewTask from "./NewTask.svelte";
     <Task />
     <Task />
     <Task />
-    <Task /> -->
+    <Task />
+    <Task />
   </div>
   <footer class="flex justify-center hover:visible">
-    <Button class="w-full justify-center items-center gap bg-inherit shadow-lg text-base hover:bg-gray-50/5 focus:outline-none focus:ring-2">
-      Tasks
+    <Button 
+      on:click={() => (showModal = true)}
+      class="w-full justify-center items-center gap bg-inherit shadow-lg text-sm hover:bg-[#303030] focus:outline-none focus:ring-2"
+    >
+      Create New Task
     </Button>
+    <Modal bind:showModal>
+      <h2 slot="header">
+        New Task
+        <small>add a new task to this section</small>
+      </h2>
+      <form action="post" class=" text-white border border-gray/10">
+        <Textarea
+          id="title"
+          placeholder="Title" 
+          value={title}
+          class="bg-[#252525] text-sm break-normal border-none"
+        />
+        <hr class="bg-white">
+        <Textarea
+          id="description"
+          placeholder="Description" 
+          value={title}
+          class="bg-[#252525] text-sm break-normal border-none "
+        />
+        <!-- <p>Due Date</p> -->
+      </form>
+    </Modal>
   </footer>
 </div>
   
