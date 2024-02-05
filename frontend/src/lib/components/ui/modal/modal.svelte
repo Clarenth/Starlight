@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Button from "../button/button.svelte";
+
 	export let showModal: Boolean; // boolean
 
 	let dialog: HTMLDialogElement; // HTMLDialogElement
@@ -11,7 +13,7 @@
 	bind:this={dialog}
 	on:close={() => (showModal = false)}
 	on:click|self={() => dialog.close()}
-	class="bg-[#303030] text-white w-[800px] h-[250px]"
+	class="bg-[#303030] text-white w-[700px] h-[300px] text-lg"
 >
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div on:click|stopPropagation>
@@ -20,7 +22,15 @@
 		<slot />
 		<hr />
 		<!-- svelte-ignore a11y-autofocus -->
-		<button autofocus on:click={() => dialog.close()}>Close</button>
+		<div class="flex flex-row justify-end gap-2 pt-1">
+			<Button on:click={() => dialog.close()}>Save</Button>
+			<Button 
+				on:click={() => dialog.close()}
+				class="bg-red-800 hover:bg-red-600"
+			>
+					Cancel
+			</Button>
+		</div>
 	</div>
 </dialog>
 
