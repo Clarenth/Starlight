@@ -13,7 +13,7 @@
 	bind:this={dialog}
 	on:close={() => (showModal = false)}
 	on:click|self={() => dialog.close()}
-	class="bg-[#303030] text-white w-[700px] h-[300px] text-lg"
+	class="bg-[#303030] text-white w-[700px] h-[320px] text-lg"
 >
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div on:click|stopPropagation>
@@ -23,7 +23,12 @@
 		<hr />
 		<!-- svelte-ignore a11y-autofocus -->
 		<div class="flex flex-row justify-end gap-2 pt-1">
-			<Button on:click={() => dialog.close()}>Save</Button>
+			<Button 
+				on:click={() => dialog.close()}
+				class="bg-[#3a3a3a] justify-center items-center gap shadow-lg text-base focus:outline-none focus:ring-2"
+				>
+				Save
+			</Button>
 			<Button 
 				on:click={() => dialog.close()}
 				class="bg-red-800 hover:bg-red-600"

@@ -1,19 +1,15 @@
 <script>
 	import NewSections from "./NewSections.svelte";
+	// import Section from "./section/Section.svelte";
 	import Section from "./Section.svelte";
 </script>
 
-<div class="flex flex-row gap-4 h-full cursor-auto overflow-auto">
-	<div class="flex flex-col gap-1">
+<div class="flex flex-row gap-3 pl-1 pb-1 h-full cursor-auto overflow-x-scroll">
+	<div class="flex flex-col gap-0.5">
 		<Section />
-		<!-- <Section />
+	</div>
+	<div class="flex flex-col gap-0.5">
 		<Section />
-		<Section />
-		<Section />
-		<Section />
-		<Section />
-		<Section />
-		<Section /> -->
 	</div>
 </div>
 

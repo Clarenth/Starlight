@@ -6,7 +6,6 @@
 
   // UI Components
   import Button from "$lib/components/ui/button/button.svelte";
-	import Section from "./_components/project/Section.svelte";
 
   function isActive() {
 
@@ -125,10 +124,10 @@
     <!--Header-->
     <nav class="flex px-6 py-2 items-center flex-none">
       <div class="flex gap-2 flex-row">
-        <Button class="bg-white justify-center items-center gap bg-inherit shadow-lg text-base hover:bg-gray-50/15 focus:outline-none focus:ring-2">
+        <Button class="bg-[#3a3a3a] justify-center items-center gap shadow-lg text-base focus:outline-none focus:ring-2">
           Tasks
         </Button>
-        <Button class="justify-center items-center bg-inherit shadow-lg text-base hover:bg-gray-50/15 focus:outline-none focus:ring-2">
+        <Button class="bg-[#3a3a3a] justify-center items-center shadow-lg text-base focus:outline-none focus:ring-2">
           Docs
         </Button>
       </div>
