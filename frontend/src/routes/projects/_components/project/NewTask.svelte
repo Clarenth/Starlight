@@ -2,14 +2,18 @@
   import Checkmark from "$lib/images/check-dark-svgrepo-com.svg";
   import Edit from "$lib/images/edit-dark-svgrepo-com.svg"
 
+  // UI Components
+  import Button from "$lib/components/ui/button/button.svelte";
   import Input from "$lib/components/ui/input/input.svelte";
 	import Textarea from "$lib/components/ui/textarea/textarea.svelte";
 
   let title: string;
   let description: string;
+  let showModal: Boolean = false;
+  let dialog: HTMLDialogElement;
 </script>
 
-<div class="flex flex-row shadow-lg gap-1 bg-[#303030] max-w-80 border border-black hover:cursor-pointer hover:border-white transition focus:outline-none focus:ring-2">
+<div class="flex flex-col shadow-lg gap-1 bg-[#303030] max-w-80 border border-black hover:cursor-pointer hover:border-white transition focus:outline-none focus:ring-2">
   <div class="flex flex-col flex-shrink-0 justify-between pl-1">
     <img 
       src={Edit}
@@ -38,6 +42,20 @@
     />
     <!-- <p>Due Date</p> -->
   </form>
+  <div class="flex flex-row justify-end gap-2 pt-1">
+    <Button 
+      on:click={() => dialog.close()}
+      class="bg-[#3a3a3a] justify-center items-center gap shadow-lg text-base focus:outline-none focus:ring-2"
+      >
+      Save
+    </Button>
+    <Button 
+      on:click={() => dialog.close()}
+      class="bg-red-800 hover:bg-red-600"
+    >
+        Cancel
+    </Button>
+  </div>
 </div>
 
 <style>

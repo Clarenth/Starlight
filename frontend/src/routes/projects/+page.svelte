@@ -12,7 +12,7 @@
   }
 </script>
 
-<div class="antialiased h-screen flex light:bg-white">
+<div class="antialiased h-screen flex  light:bg-white">
   <!-- <nav class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
     <div class="flex flex-wrap justify-between items-center">
       <div class="flex justify-start items-center">
@@ -31,21 +31,21 @@
 
   <!-- Sidebar -->
   <aside
-    class="flex-none block top-0 left-0 z-40 w-36 pt-16 transition-transform -translate-x-full bg-[#303030] border-r border-gray-400 md:translate-x-0"
+    class="flex-none block top-0 left-0 z-40 w-36 pt-16 transition-transform -translate-x-full bg-default border-r-2 border-gray-400 md:translate-x-0"
     aria-label="Sidenav"
     id="drawer-navigation"
   >
     <div class="overflow-y-auto px-3 h-full">
       <ul class="space-y-2">
         <li>
-          <button
+          <Button
             type="button"
-            class="flex items-center p-2 w-full text-base font-medium rounded-lg duration-75 group hover:bg-gray-50/15 transition dark:text-white dark:hover:bg-gray-700"
+            class="bg-[#3a3a3a] flex items-center p-2 w-full text-base font-medium rounded-lg duration-75 group hover:bg-gray-50/15 transition dark:text-white dark:hover:bg-gray-700"
             aria-controls="dropdown-pages"
             data-collapse-toggle="dropdown-pages"
           >
-            Test
-          </button>
+            Project#1
+          </Button>
           <ul id="dropdown-pages" class="hidden py-2 space-y-2">
           </ul>
         </li>
@@ -133,7 +133,7 @@
       </div>
     </nav>
     <!-- Project Table -->
-    <div class="px-6 py-4 flex-1 overflow-scroll">
+    <div class="px-6 py-1 flex-1 overflow-scroll">
       <Table />
     </div>
   </main>

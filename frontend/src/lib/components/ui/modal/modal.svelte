@@ -3,7 +3,7 @@
 
 	export let showModal: Boolean; // boolean
 
-	let dialog: HTMLDialogElement; // HTMLDialogElement
+	export let dialog: HTMLDialogElement; // HTMLDialogElement
 
 	$: if (dialog && showModal) dialog.showModal();
 </script>
@@ -20,22 +20,8 @@
 		<slot name="header" />
 		<hr />
 		<slot />
-		<hr />
+		<!-- <hr /> -->
 		<!-- svelte-ignore a11y-autofocus -->
-		<div class="flex flex-row justify-end gap-2 pt-1">
-			<Button 
-				on:click={() => dialog.close()}
-				class="bg-[#3a3a3a] justify-center items-center gap shadow-lg text-base focus:outline-none focus:ring-2"
-				>
-				Save
-			</Button>
-			<Button 
-				on:click={() => dialog.close()}
-				class="bg-red-800 hover:bg-red-600"
-			>
-					Cancel
-			</Button>
-		</div>
 	</div>
 </dialog>
 

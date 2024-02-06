@@ -16,6 +16,7 @@
   let title: string;
   let description: string;
   let showModal: Boolean = false;
+  let dialog: HTMLDialogElement;
 
   function toggleEditTitle() {
     alert("TODO")
@@ -49,7 +50,7 @@
   >
     Add Task
   </Button>
-  <Modal bind:showModal>
+  <Modal bind:showModal bind:dialog>
     <h2 slot="header">
       Add Task
       <small class="">add a new task to this section</small>
@@ -71,6 +72,20 @@
       />
       <p>Due Date</p>
     </form>
+    <div class="flex flex-row justify-end gap-2 pt-1">
+      <Button 
+        on:click={() => dialog.close()}
+        class="bg-[#3a3a3a] justify-center items-center gap shadow-lg text-base focus:outline-none focus:ring-2"
+        >
+        Save
+      </Button>
+      <Button 
+        on:click={() => dialog.close()}
+        class="bg-red-800 hover:bg-red-600"
+      >
+          Cancel
+      </Button>
+    </div>
   </Modal>
 </footer>
   
