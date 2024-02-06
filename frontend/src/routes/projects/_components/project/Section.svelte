@@ -18,20 +18,46 @@
   let showModal: Boolean = false;
   let dialog: HTMLDialogElement;
 
-  function toggleEditTitle() {
-    alert("TODO")
-  }
+  let editSection = false;
+  let addNewTask = false;
 </script>
 
 <div class="flex-shrink-0 overflow-x-scroll pr-1">
 </div>
 
-<Button
-  on:click={toggleEditTitle}
-  class="w-full bg-[#3a3a3a] justify-center items-center shadow-lg rounded-b-none focus:outline-none focus:ring-2"
->
-  <header>Title of Section</header>
-</Button>
+TODO
+<!-- <p>Implement save to db functionality on create new task</p>
+<p>Expande on the reuseable Modal for other components</p>
+<p>Implement props for Task and Section, allowing for data passing when rendering via for-each in the Table</p>
+<p>Look into moving Sidebar, Header, Footer into their own components for maintainability/expandability</p>
+<p>Implement Authentication on the Login screen. Implement the data flow for Create Profile</p>
+<p>Figure out moving components around the screen using svelte-dnd.</p>
+<p>Can I hold everything in an internal array for each component state? Use svelte store based on which project is selected (project ID)?</p> -->
+
+{#if editSection == false}
+  <Button
+    on:click={() => editSection = true}
+    class="w-full bg-[#3a3a3a] justify-center items-center shadow-lg rounded-b-none focus:outline-none focus:ring-2"
+  >
+  <span>Title of Section</span>
+  </Button>
+  {:else}
+    <Input
+      type="text"
+      placeholder="Title of Section"
+      class="h-10 w-full bg-[#3a3a3a] justify-center items-center text-center shadow-lg rounded-b-none focus:outline-none"
+      autofocus
+    />
+    <div class="flex flex-row justify-end">
+    <Button type="submit" class="bg-red-700 rounded-none hover:bg-red-900" on:click={() => editSection = false}>
+      Cancel
+    </Button>
+    <Button type="submit" class="bg-[#3a3a3a] shadow-lg rounded-none focus:outline-none focus:ring-2">
+      Save
+    </Button>
+  </div>
+{/if}
+
 <div class="space-y-0.5 overflow-y-scroll">
   <Task />
   <Task />
@@ -40,11 +66,46 @@
   <Task />
   <Task />
   <Task />
-  <Task />
-  <Task />
 </div>
-<footer class="flex justify-center hover:visible">
+
+{#if addNewTask == false}
   <Button 
+    on:click={() => (addNewTask = true)}
+    class="w-full bg-[#3a3a3a] justify-center items-center shadow-lg rounded-t-none focus:outline-none focus:ring-2"
+  >
+    Add Task
+  </Button>
+  {:else}
+  <form action="post" class="border border-none text-white">
+    <Input
+      id="title"
+      placeholder="Title" 
+      value={title}
+      autofocus
+      class="w-full bg-[#3a3a3a] text-base break-normal border-none"
+    />
+    <hr class="bg-white">
+    <Textarea
+      id="description"
+      placeholder="Description" 
+      value={description}
+      class="bg-[#3a3a3a] text-sm break-normal border-none "
+    />
+    <p>Due Date</p>
+  </form>
+    <Button type="submit" class="bg-red-700 hover:bg-red-900 rounded-none" on:click={() => addNewTask = false}>
+      Cancel
+    </Button>
+    <Button type="submit" class="w-full bg-[#3a3a3a] justify-center items-center shadow-lg rounded-t-none focus:outline-none focus:ring-2">
+      Save
+    </Button>
+{/if}
+
+<footer class="flex justify-center hover:visible">
+  
+
+
+  <!-- <Button 
     on:click={() => (showModal = true)}
     class="w-full bg-[#3a3a3a] justify-center items-center shadow-lg rounded-t-none focus:outline-none focus:ring-2"
   >
@@ -56,12 +117,12 @@
       <small class="">add a new task to this section</small>
     </h2>
     <form action="post" class="border border-none text-white">
-      <Textarea
+      <Input
         id="title"
         placeholder="Title" 
         value={title}
         autofocus
-        class="bg-[#252525] text-sm break-normal border-none"
+        class="w-full bg-[#252525] text-base break-normal border-none"
       />
       <hr class="bg-white">
       <Textarea
@@ -86,7 +147,7 @@
           Cancel
       </Button>
     </div>
-  </Modal>
+  </Modal> -->
 </footer>
   
 <style>

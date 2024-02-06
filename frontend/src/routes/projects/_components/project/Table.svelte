@@ -8,9 +8,6 @@
 	<div class="flex flex-col gap-0.5">
 		<Section />
 	</div>
-	<div class="flex flex-col gap-0.5">
-		<Section />
-	</div>
 </div>
 
 <style>
