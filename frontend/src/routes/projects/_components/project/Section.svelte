@@ -25,8 +25,8 @@
 <div class="flex-shrink-0 overflow-x-scroll pr-1">
 </div>
 
-TODO
-<!-- <p>Implement save to db functionality on create new task</p>
+<!-- TODO
+<p>Implement save to db functionality on create new task</p>
 <p>Expande on the reuseable Modal for other components</p>
 <p>Implement props for Task and Section, allowing for data passing when rendering via for-each in the Table</p>
 <p>Look into moving Sidebar, Header, Footer into their own components for maintainability/expandability</p>
@@ -37,7 +37,7 @@ TODO
 {#if editSection == false}
   <Button
     on:click={() => editSection = true}
-    class="w-full bg-[#3a3a3a] justify-center items-center shadow-lg rounded-b-none focus:outline-none focus:ring-2"
+    class="w-full bg-[#3a3a3a] justify-center items-center border border-gray-50/15 shadow-lg rounded-b-none focus:outline-none focus:ring-2"
   >
   <span>Title of Section</span>
   </Button>
@@ -45,20 +45,20 @@ TODO
     <Input
       type="text"
       placeholder="Title of Section"
-      class="h-10 w-full bg-[#3a3a3a] justify-center items-center text-center shadow-lg rounded-b-none focus:outline-none"
+      class="h-10 w-full bg-[#3a3a3a] justify-center items-center text-center border border-gray-50/15 shadow-lg rounded-t-md rounded-b-none focus:outline-none"
       autofocus
     />
     <div class="flex flex-row justify-end">
       <Button type="submit" class="bg-red-700 rounded-none hover:bg-red-900" on:click={() => editSection = false}>
         Cancel
       </Button>
-      <Button type="submit" class="bg-[#3a3a3a] shadow-lg rounded-none focus:outline-none focus:ring-2">
+      <Button type="submit" class="bg-[#3a3a3a] shadow-lg border border-gray-50/15 rounded-none focus:outline-none focus:ring-2">
         Save
       </Button>
     </div>
 {/if}
 
-<div class="space-y-0.5 overflow-y-scroll">
+<div class="space-y-1 overflow-y-scroll">
   <Task />
   <Task />
   <Task />
@@ -71,25 +71,25 @@ TODO
 {#if addNewTask == false}
   <Button 
     on:click={() => (addNewTask = true)}
-    class="w-full bg-[#3a3a3a] justify-center items-center shadow-lg rounded-t-none focus:outline-none focus:ring-2"
+    class="w-full bg-[#3a3a3a] justify-center items-center border border-gray-50/15 shadow-lg rounded-t-none focus:outline-none focus:ring-2"
   >
     Add Task
   </Button>
   {:else}
-    <form action="post" class=" border border-black text-white">
+    <form action="post" class="border border-black text-white">
       <Input
         id="title"
         placeholder="Title" 
         value={title}
         autofocus
-        class="w-full bg-[#3a3a3a] text-base break-normal border-none justify-center items-center text-center shadow-lg rounded-b-none focus:outline-none"
+        class="w-full bg-[#3a3a3a] text-base break-normal border border-gray-50/15 justify-center items-center text-center shadow-lg rounded-b-none focus:outline-none"
       />
       <hr class="bg-white">
       <Textarea
         id="description"
         placeholder="Task Description" 
         value={description}
-        class="h-44 bg-[#3a3a3a] text-base border-none focus:outline-none"
+        class="h-44 bg-[#3a3a3a] text-base border border-gray-50/15 rounded-t-none focus:outline-none"
       />
       <!-- <p>Due Date</p> -->
     </form>
@@ -97,7 +97,7 @@ TODO
       <Button type="submit" class="bg-red-700 rounded-none hover:bg-red-900" on:click={() => addNewTask = false}>
         Cancel
       </Button>
-      <Button type="submit" class="bg-[#3a3a3a] shadow-lg rounded-none focus:outline-none focus:ring-2">
+      <Button type="submit" class="bg-[#3a3a3a] shadow-lg border border-gray-50/15 rounded-none focus:outline-none focus:ring-2">
         Save
       </Button>
     </div>

@@ -1,9 +1,15 @@
 <script lang="ts">
+  // UI Components
+  // Assets
   import Checkmark from "$lib/images/check-dark-svgrepo-com.svg";
   import Edit from "$lib/images/edit-dark-svgrepo-com.svg"
+
+  // JavaScript
 </script>
 
-<div class="flex flex-row shadow-lg gap-1 bg-[#303030] max-w-80 border border-black hover:cursor-pointer hover:border-white transition focus:outline-none focus:ring-2">
+<div 
+  draggable="true"
+  class="flex flex-row shadow-lg gap-1 bg-[#303030] max-w-80 border border-gray-50/15 hover:cursor-pointer hover:border-white transition focus:outline-none focus:ring-2" >
   <div class="flex flex-col flex-shrink-0 justify-between pl-1">
     <img 
       src={Edit}
