@@ -1,42 +1,31 @@
 package db
 
 import (
-	"context"
 	"fmt"
-
-	"starlight/internal/models"
+	"log"
+	"starlight/internal/db/sqlite"
 	// sqlite3 "github.com/mattn/go-sqlite3"
 )
 
 type DB struct {
-	ctx   context.Context
-	memDB map[string]models.Account
+	SQLite sqlite.SQLite
 }
 
 func NewDB() *DB {
+	sqlite, err := sqlite.NewSqlite()
+	if err != nil {
+		log.Print(fmt.Errorf("error initialising SQLite DB: %v", err))
+	}
+
 	return &DB{
-		memDB: make(map[string]models.Account),
+		SQLite: sqlite,
 	}
 }
 
-func (c *DB) SetContext(ctx context.Context) {
-	c.ctx = ctx
-}
-
-func (c *DB) newSQLiteDB() {
-}
-
-/*Old Test Functions*/
-func (c *DB) NewMemDB() map[string]models.Account {
-	newDB := make(map[string]models.Account, 5)
-	return newDB
-}
-
-func (c *DB) PrintDB() string {
-	return fmt.Sprint(c.memDB)
-}
-
-func (db *DB) LoadAccountData(name string) string {
-	output := fmt.Sprintf("Hello %v!", name)
-	return output
-}
+// func (db *DB) CreateAccount(username string, password string) (string, error) {
+// 	result, err := db.SQLite.CreateAccount()
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	return result, nil
+// }

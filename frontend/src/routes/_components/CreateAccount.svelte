@@ -3,7 +3,7 @@
   import { slide } from "svelte/transition";
   // Wails
   import { CreateAccount } from "$lib/wailsjs/go/auth/auth"
-  // Libraries
+  // UI Components
   import Button from "$lib/components/ui/button/button.svelte";
 	import Input from "$lib/components/ui/input/input.svelte";
 

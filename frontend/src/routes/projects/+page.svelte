@@ -40,7 +40,7 @@
         <li>
           <Button
             type="button"
-            class="bg-[#3a3a3a] flex items-center p-2 w-full text-base font-medium border border-gray-50/15 rounded-lg duration-75 group hover:bg-gray-50/15 transition dark:text-white dark:hover:bg-gray-700"
+            class="bg-[#3a3a3a] flex items-center p-2 w-full text-base font-medium border border-gray-50/15 rounded-lg duration-75 group transition dark:text-white dark:hover:bg-gray-700"
             aria-controls="dropdown-pages"
             data-collapse-toggle="dropdown-pages"
           >
