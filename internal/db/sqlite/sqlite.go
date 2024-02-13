@@ -16,6 +16,7 @@ type sqlite struct {
 
 type SQLite interface {
 	CreateAccount(ctx context.Context, username string, password string) (string, error)
+	TestyCreateAccount(username string, password string) (string, error)
 }
 
 func NewSqlite() (SQLite, error) {

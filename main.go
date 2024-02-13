@@ -19,9 +19,10 @@ var assets embed.FS
 
 func main() {
 	// Create an instance of the app structure
-	app := NewApp()
+	//config goes here
 	db := db.NewDB()
-	auth := auth.New()
+	auth := auth.NewAuth(db)
+	app := NewApp()
 
 	go func() {
 		log.Println(http.ListenAndServe("localhost:6060", nil))
@@ -45,7 +46,6 @@ func main() {
 		Bind: []interface{}{
 			app,
 			auth,
-			db,
 		},
 		// OnShutdown: ,
 		// OnBeforeClose: ,

@@ -1,17 +1,28 @@
 package auth
 
 import (
+	"fmt"
 	"time"
 
+	"starlight/internal/db"
+	"starlight/internal/db/sqlite"
 	"starlight/internal/models"
 
 	"github.com/google/uuid"
 )
 
-type auth struct{}
+type auth struct {
+	DB sqlite.SQLite
+}
 
-func New() *auth {
-	return &auth{}
+// type AuthConfig struct {
+// 	sqliteRepo sqlite.SQLite
+// }
+
+func NewAuth(db *db.DB) *auth {
+	return &auth{
+		DB: db.SQLite,
+	}
 }
 
 func (auth *auth) CreateAccount(username string, password string) (string, bool) {
@@ -25,7 +36,8 @@ func (auth *auth) CreateAccount(username string, password string) (string, bool)
 		CreatedAt: time.UTC.String(),
 		UpdatedAt: time.UTC.String(),
 	}
-
+	fmt.Printf("%v", newAccount)
+	panic("not done yet!")
 }
 
 func (auth *auth) Login(username string, password string) bool {
@@ -42,4 +54,13 @@ func (auth *auth) Login(username string, password string) bool {
 	}
 
 	return false
+}
+
+func (auth *auth) TestyLogin(username string, password string) string {
+	result, err := auth.DB.TestyCreateAccount(username, password)
+	if err != nil {
+		return err.Error()
+	}
+
+	return result
 }

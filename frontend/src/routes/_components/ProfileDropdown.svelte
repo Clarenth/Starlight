@@ -2,18 +2,28 @@
   // Svelte
   import { slide } from "svelte/transition";
   // Wails
-  import { Login } from "$lib/wailsjs/go/auth/auth"
+  import { Login, TestyLogin } from "$lib/wailsjs/go/auth/auth"
   // UI Components
 	import Button from "$lib/components/ui/button/button.svelte";
 	import Input from "$lib/components/ui/input/input.svelte";
+  
   // JavaScript
-  let username: string;
-  let password: string;
+  // let username: string;
+  // let password: string;
+
   const handleLogin = (username: string, password: string) => {
     Login(username, password)
       .then((result: Boolean) => {
         console.log(result)
       })
+  }
+  let username: string = "Crag Tarr";
+  let password: string = "Wails" 
+  function testLogin() {
+    TestyLogin(username, password)
+    .then((result: any) => (
+      console.log(result)
+    ))
   }
 
   export let profile;
@@ -61,6 +71,9 @@
       </Button>
     </form>
   {/key}
+  <Button on:click={testLogin}>
+    TestyLogin
+  </Button>
 </div>
 
 <style>

@@ -4,3 +4,5 @@
 export function CreateAccount(arg1:string,arg2:string):Promise<string|boolean>;
 
 export function Login(arg1:string,arg2:string):Promise<boolean>;
+
+export function TestyLogin(arg1:string,arg2:string):Promise<string>;
