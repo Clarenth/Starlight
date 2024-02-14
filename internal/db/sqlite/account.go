@@ -9,20 +9,6 @@ import (
 	"github.com/google/uuid"
 )
 
-func (sqlite *sqlite) createAccountTable() error {
-	_, err := sqlite.DB.Exec(`
-	CREATE TABLE IF NOT EXISTS accounts (
-		id TEXT NOT NULL
-		username TEXT NOT NULL,
-		password TEXT NOT NULL,
-		PRIMARY KEY (id)
-	)`)
-	if err != nil {
-		return fmt.Errorf("error in accounts table!")
-	}
-	return nil
-}
-
 func (sqlite *sqlite) CreateAccount(ctx context.Context, username string, password string) (string, error) {
 	account := models.Account{
 		ID:        uuid.New(),
@@ -40,6 +26,18 @@ func (sqlite *sqlite) CreateAccount(ctx context.Context, username string, passwo
 		return "", fmt.Errorf("error: could not create account")
 	}
 	return fmt.Sprintf("created account with username %v", username), nil
+}
+
+func (sqlite *sqlite) GetAccount(ctx context.Context, username string, password string) error {
+	panic("Not completed yet")
+}
+
+func (sqlite *sqlite) DeleteAccount(ctx context.Context, username string, password string) error {
+	panic("Not completed")
+}
+
+func (sqlite *sqlite) UpdateAccount(ctx context.Context, username string, password string) error {
+	panic("Not completed")
 }
 
 func (sqlite *sqlite) TestyCreateAccount(username string, password string) (string, error) {

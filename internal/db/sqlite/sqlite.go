@@ -16,7 +16,25 @@ type sqlite struct {
 
 type SQLite interface {
 	CreateAccount(ctx context.Context, username string, password string) (string, error)
+	DeleteAccount(ctx context.Context, username string, password string) error
+	GetAccount(ctx context.Context, username string, password string) error
+	UpdateAccount(ctx context.Context, username string, password string) error
 	TestyCreateAccount(username string, password string) (string, error)
+
+	CreateNote(ctx context.Context) error
+	DeleteNote(ctx context.Context) error
+	GetNote(ctx context.Context) error
+	UpdateNote(ctx context.Context) error
+
+	CreateSection(ctx context.Context) error
+	GetSection(ctx context.Context) error
+	DeleteSection(ctx context.Context) error
+	UpdateSection(ctx context.Context) error
+
+	CreateTask(ctx context.Context) error
+	DeleteTask(ctx context.Context) error
+	GetTask(ctx context.Context) error
+	UpdateTask(ctx context.Context) error
 }
 
 func NewSqlite() (SQLite, error) {
@@ -43,4 +61,18 @@ func initDataSource() (string, error) {
 	dataDir := filepath.Join(homeDir, "starlight")
 	os.Mkdir(dataDir, os.FileMode(0755))
 	return filepath.Join(dataDir, "starlight.db"), nil
+}
+
+func (sqlite *sqlite) createAccountTable() error {
+	_, err := sqlite.DB.Exec(`
+	CREATE TABLE IF NOT EXISTS accounts (
+		id TEXT NOT NULL
+		username TEXT NOT NULL,
+		password TEXT NOT NULL,
+		PRIMARY KEY (id)
+	)`)
+	if err != nil {
+		return fmt.Errorf("error in accounts table!")
+	}
+	return nil
 }
