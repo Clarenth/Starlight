@@ -3,8 +3,11 @@ package sqlite
 import (
 	"context"
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
+
+	"starlight/internal/models"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/mattn/go-sqlite3"
@@ -15,7 +18,7 @@ type sqlite struct {
 }
 
 type SQLite interface {
-	CreateAccount(ctx context.Context, username string, password string) (string, error)
+	CreateAccount(ctx context.Context, account *models.Account) (string, error)
 	DeleteAccount(ctx context.Context, username string, password string) error
 	GetAccount(ctx context.Context, username string, password string) error
 	UpdateAccount(ctx context.Context, username string, password string) error
@@ -25,6 +28,11 @@ type SQLite interface {
 	DeleteNote(ctx context.Context) error
 	GetNote(ctx context.Context) error
 	UpdateNote(ctx context.Context) error
+
+	CreateProject(ctx context.Context) error
+	DeleteProject(ctx context.Context) error
+	GetProject(ctx context.Context) error
+	UpdateProject(ctx context.Context) error
 
 	CreateSection(ctx context.Context) error
 	GetSection(ctx context.Context) error
@@ -40,7 +48,7 @@ type SQLite interface {
 func NewSqlite() (SQLite, error) {
 	sqliteFile, err := initDataSource()
 	if err != nil {
-		return nil, fmt.Errorf("error: could not initalise SQLite db file")
+		log.Fatal("error: could not initalise SQLite db file")
 	}
 
 	db, err := sqlx.Open("sqlite3", sqliteFile)
@@ -72,7 +80,7 @@ func (sqlite *sqlite) createAccountTable() error {
 		PRIMARY KEY (id)
 	)`)
 	if err != nil {
-		return fmt.Errorf("error in accounts table!")
+		return fmt.Errorf("error in accounts table")
 	}
 	return nil
 }

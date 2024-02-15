@@ -3,21 +3,14 @@ package sqlite
 import (
 	"context"
 	"fmt"
-	"starlight/internal/models"
 	"time"
+
+	"starlight/internal/models"
 
 	"github.com/google/uuid"
 )
 
-func (sqlite *sqlite) CreateAccount(ctx context.Context, username string, password string) (string, error) {
-	account := models.Account{
-		ID:        uuid.New(),
-		Username:  username,
-		Password:  password,
-		CreatedAt: time.Now().String(),
-		UpdatedAt: time.Now().String(),
-	}
-
+func (sqlite *sqlite) CreateAccount(ctx context.Context, account *models.Account) (string, error) {
 	query := `INSERT OR IGNORE INTO accounts (id, username, password, created_at, updated_at) 
 						VALUES ($1, $2, $3, $4, $5)
 						`
@@ -25,7 +18,7 @@ func (sqlite *sqlite) CreateAccount(ctx context.Context, username string, passwo
 	if err := sqlite.DB.Get(account, query); err != nil {
 		return "", fmt.Errorf("error: could not create account")
 	}
-	return fmt.Sprintf("created account with username %v", username), nil
+	return fmt.Sprintln("Account created"), nil
 }
 
 func (sqlite *sqlite) GetAccount(ctx context.Context, username string, password string) error {

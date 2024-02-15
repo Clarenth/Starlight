@@ -20,9 +20,9 @@ var assets embed.FS
 func main() {
 	// Create an instance of the app structure
 	//config goes here
-	db := db.NewDB()
-	auth := auth.NewAuth(db)
 	app := NewApp()
+	db := db.NewDB()
+	auth := auth.NewAuth(app.ctx, db)
 
 	go func() {
 		log.Println(http.ListenAndServe("localhost:6060", nil))

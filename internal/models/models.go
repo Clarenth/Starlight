@@ -11,21 +11,17 @@ type Account struct {
 	UpdatedAt    string    `json:"updated_at"`
 }
 
-func NewAccount() *Account {
-	return &Account{}
+type Document struct {
+	ID        uuid.UUID `json:"id"`
+	Title     string    `json:"title"`
+	CreatedAt string    `json:"created_at"`
+	UpdatedAt string    `json:"updated_at"`
 }
 
 type Note struct {
 	ID        uuid.UUID `json:"id"`
 	Title     string    `json:"title"`
 	Content   string    `json:"content"`
-	CreatedAt string    `json:"created_at"`
-	UpdatedAt string    `json:"updated_at"`
-}
-
-type Page struct {
-	ID        uuid.UUID `json:"id"`
-	Title     string    `json:"title"`
 	CreatedAt string    `json:"created_at"`
 	UpdatedAt string    `json:"updated_at"`
 }
@@ -44,4 +40,8 @@ type Task struct {
 	Content     string    `json:"content"`
 	CreatedAt   string    `json:"created_at"`
 	UpdatedAt   string    `json:"updated_at"`
+}
+
+func NewAccount() *Account {
+	return &Account{}
 }

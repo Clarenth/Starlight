@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"context"
 	"fmt"
 	"time"
 
@@ -12,20 +13,22 @@ import (
 )
 
 type auth struct {
-	DB sqlite.SQLite
+	ctx    context.Context
+	SQLite sqlite.SQLite
 }
 
 // type AuthConfig struct {
 // 	sqliteRepo sqlite.SQLite
 // }
 
-func NewAuth(db *db.DB) *auth {
+func NewAuth(ctx context.Context, db *db.DB) *auth {
 	return &auth{
-		DB: db.SQLite,
+		ctx:    ctx,
+		SQLite: db.SQLite,
 	}
 }
 
-func (auth *auth) CreateAccount(username string, password string) (string, bool) {
+func (auth *auth) CreateAccount(ctx context.Context, username string, password string) (string, bool) {
 	if username == "" || password == "" {
 		return "error: username and password must not be false", false
 	}
@@ -36,8 +39,13 @@ func (auth *auth) CreateAccount(username string, password string) (string, bool)
 		CreatedAt: time.UTC.String(),
 		UpdatedAt: time.UTC.String(),
 	}
-	fmt.Printf("%v", newAccount)
-	panic("not done yet!")
+	fmt.Sprintln(newAccount)
+
+	result, err := auth.SQLite.CreateAccount(ctx, &newAccount)
+	if err != nil {
+		panic("TODO")
+	}
+	return result, false
 }
 
 func (auth *auth) Login(username string, password string) bool {
@@ -57,7 +65,7 @@ func (auth *auth) Login(username string, password string) bool {
 }
 
 func (auth *auth) TestyLogin(username string, password string) string {
-	result, err := auth.DB.TestyCreateAccount(username, password)
+	result, err := auth.SQLite.TestyCreateAccount(username, password)
 	if err != nil {
 		return err.Error()
 	}

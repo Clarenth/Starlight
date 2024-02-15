@@ -1,6 +1,7 @@
 package db
 
 import (
+	"context"
 	"fmt"
 	"log"
 
@@ -8,6 +9,7 @@ import (
 )
 
 type DB struct {
+	ctx    context.Context
 	SQLite sqlite.SQLite
 }
 
@@ -21,11 +23,3 @@ func NewDB() *DB {
 		SQLite: sqlite,
 	}
 }
-
-// func (db *DB) CreateAccount(username string, password string) (string, error) {
-// 	result, err := db.SQLite.CreateAccount()
-// 	if err != nil {
-// 		return "", err
-// 	}
-// 	return result, nil
-// }
