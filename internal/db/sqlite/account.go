@@ -23,8 +23,16 @@ func (sqlite *sqlite) CreateAccount(ctx context.Context, account *models.Account
 	return true, nil
 }
 
-func (sqlite *sqlite) GetAccount(ctx context.Context, username string, password string) error {
-	panic("Not completed yet")
+func (sqlite *sqlite) GetAccount(ctx context.Context, username string, password string) (*models.Account, error) {
+	// temp info
+	account := &models.Account{
+		ID:        uuid.New(),
+		Username:  "Crag Tarr",
+		CreatedAt: time.Now().String(),
+		UpdatedAt: time.Now().String(),
+	}
+	return account, nil
+	panic("Not completed")
 }
 
 func (sqlite *sqlite) DeleteAccount(ctx context.Context, username string, password string) error {

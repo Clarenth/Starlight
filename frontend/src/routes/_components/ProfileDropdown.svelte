@@ -12,13 +12,13 @@
   // let password: string;
 
   const handleLogin = (username: string, password: string) => {
-    Login(username, password)
-      .then((result: Boolean) => {
+    Login("Crag Tarr", "123")
+      .then((result: any) => {
         console.log(result)
       })
   }
-  let username: string = "Crag Tarr";
-  let password: string = "Wails" 
+  let username: string;
+  let password: string;
 
   export let profile;
   const { name } = profile;
@@ -44,17 +44,21 @@
 
 <div class="mt-4 mb-4 shadow-xl">
   {#key isOpen}
-    <form method="post" class="flex flex-col items-center justify-center bg-[#474747] text-lg border border-separate border-[#252525]" class:hidden={!isOpen} transition:slide={{ duration: 300 }}>
+    <form 
+      method="post"
+      on:submit|preventDefault={() => handleLogin(username, password)} 
+      class="flex flex-col items-center justify-center bg-[#474747] text-lg border border-separate border-[#252525]" class:hidden={!isOpen} transition:slide={{ duration: 300 }}
+    >
       <Input 
         id="password"  
         name="password" 
         type="password" 
         placeholder="password"
         value={password}
-        class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] rounded-none text-white text-lg mt-2 mb-2 hover:bg-[#1b1b1b] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
+        class="flex items-center h-12 px-4 bg-[#252525] rounded-none text-white text-lg mt-2 mb-2 hover:bg-[#1b1b1b] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
       />
       <Button 
-        href="/projects"
+        type="submit"
         variant="default"
         class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] rounded-none text-white text-lg mt-2 mb-2 hover:bg-[#1b1b1b] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
         on:click={(e) => {
