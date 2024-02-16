@@ -10,15 +10,17 @@ import (
 	"github.com/google/uuid"
 )
 
-func (sqlite *sqlite) CreateAccount(ctx context.Context, account *models.Account) (string, error) {
+func (sqlite *sqlite) CreateAccount(ctx context.Context, account *models.Account) (bool, error) {
+	return false, nil
+
 	query := `INSERT OR IGNORE INTO accounts (id, username, password, created_at, updated_at) 
 						VALUES ($1, $2, $3, $4, $5)
 						`
 
 	if err := sqlite.DB.Get(account, query); err != nil {
-		return "", fmt.Errorf("error: could not create account")
+		return false, fmt.Errorf("error: could not create account")
 	}
-	return fmt.Sprintln("Account created"), nil
+	return true, nil
 }
 
 func (sqlite *sqlite) GetAccount(ctx context.Context, username string, password string) error {

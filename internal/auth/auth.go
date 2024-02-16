@@ -28,9 +28,9 @@ func NewAuth(ctx context.Context, db *db.DB) *auth {
 	}
 }
 
-func (auth *auth) CreateAccount(ctx context.Context, username string, password string) (string, bool) {
+func (auth *auth) CreateAccount(username string, password string) (bool, error) {
 	if username == "" || password == "" {
-		return "error: username and password must not be false", false
+		return false, fmt.Errorf("error: username and password must not be false")
 	}
 	newAccount := models.Account{
 		ID:        uuid.New(),
@@ -39,13 +39,13 @@ func (auth *auth) CreateAccount(ctx context.Context, username string, password s
 		CreatedAt: time.UTC.String(),
 		UpdatedAt: time.UTC.String(),
 	}
-	fmt.Sprintln(newAccount)
-
+	// fmt.Sprintln(newAccount)
+	ctx := auth.ctx
 	result, err := auth.SQLite.CreateAccount(ctx, &newAccount)
 	if err != nil {
 		panic("TODO")
 	}
-	return result, false
+	return result, nil
 }
 
 func (auth *auth) Login(username string, password string) bool {

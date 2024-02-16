@@ -1,18 +1,47 @@
 <script lang="ts">
   // Svelte
   import { slide } from "svelte/transition";
+  import { goto } from "$app/navigation";
   // Wails
   import { CreateAccount } from "$lib/wailsjs/go/auth/auth"
   // UI Components
   import Button from "$lib/components/ui/button/button.svelte";
 	import Input from "$lib/components/ui/input/input.svelte";
+	import { enhance } from "$app/forms";
 
   let isOpen = false;
   const toggle = () => (isOpen = !isOpen);
 
-  let username: String;
-  let password: String;
-  let confirmPassword: String;
+  let username: string;
+  let password: string;
+  let confirmPassword: string;
+
+  // set svelte context
+  // return an account JSON to store in Context
+  // use this to pull projects and documents from DB using
+  // the context details
+  function handleCreateAccount(username: string, password: string, confirmPassword: string) {
+    console.log(username)
+    console.log(password)
+    console.log(confirmPassword)
+    if (password != confirmPassword){return}
+    try {
+      CreateAccount(username, password)
+        .then(result => result)
+        .then((data) => {
+          let result = data;
+          console.log(result)
+          if(result === false) {
+            console.log("error")
+            console.log(result)
+          } else {
+            goto("/projects")
+          }
+        })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 </script>
 
 <div class="border-b border-separate border-white mb-4">
@@ -35,14 +64,21 @@
 
 <div class="shadow-xl">
   {#key isOpen}
-    <form on:submit|preventDefault action="#" method="post" class="flex flex-col items-center justify-center bg-[#474747] text-lg border border-separate border-[#252525]" class:hidden={!isOpen} transition:slide={{ duration: 300 }}>
+    <form 
+      on:submit|preventDefault={() => handleCreateAccount(username, password, confirmPassword)} 
+      method="post"
+      use:enhance 
+      class="flex flex-col items-center justify-center bg-[#474747] text-lg border border-separate border-[#252525]" class:hidden={!isOpen} transition:slide={{ duration: 300 }}
+    >
       <label class="mt-2" for="profile-name">Profile Name</label>
       <Input 
         id="profile-name" 
         name="profile-name" 
         placeholder="Profile Name"
         type="text" 
-        class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mb-2 border border-separate border-[#252525] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
+        bind:value={username}
+        class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mb-2 border border-separate border-[#252525] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2"
+        required 
       />
 
       <label class="mt-2" for="password">Password</label>
@@ -51,7 +87,9 @@
           name="password" 
           type="password" 
           placeholder="Password"
-          class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mb-2 border border-separate border-[#252525] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
+          bind:value={password}
+          class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mb-2 border border-separate border-[#252525] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2"
+          required 
       />
       
       <label class="mt-2" for="confirm-password">Confirm Password</label>
@@ -60,16 +98,15 @@
           name="confirm-password" 
           type="password" 
           placeholder="Confirm Password"
-          value={confirmPassword}
-          class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mb-2 border border-separate border-[#252525] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
+          bind:value={confirmPassword}
+          class="flex items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] text-white mb-2 border border-separate border-[#252525] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2"
+          required 
       />
+      <!--/projects-->
       <Button 
-        href="/projects"
+        type="submit"
         variant="default"
         class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] hover:bg-[#1b1b1b] rounded-none text-white text-lg mt-2 mb-2 focus:bg-[#1b1b1b] focus:outline-none focus:ring-2"
-        on:click={(e) => {
-          
-        }}
       >
         Create Profile
       </Button>

@@ -19,12 +19,6 @@
   }
   let username: string = "Crag Tarr";
   let password: string = "Wails" 
-  function testLogin() {
-    TestyLogin(username, password)
-    .then((result: any) => (
-      console.log(result)
-    ))
-  }
 
   export let profile;
   const { name } = profile;
@@ -71,9 +65,6 @@
       </Button>
     </form>
   {/key}
-  <Button on:click={testLogin}>
-    TestyLogin
-  </Button>
 </div>
 
 <style>
