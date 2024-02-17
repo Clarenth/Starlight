@@ -65,8 +65,8 @@
 <div class="shadow-xl">
   {#key isOpen}
     <form 
-      on:submit|preventDefault={() => handleCreateAccount(username, password, confirmPassword)} 
       method="post"
+      on:submit|preventDefault={() => handleCreateAccount(username, password, confirmPassword)} 
       use:enhance 
       class="flex flex-col items-center justify-center bg-[#474747] text-lg border border-separate border-[#252525]" class:hidden={!isOpen} transition:slide={{ duration: 300 }}
     >

@@ -3,7 +3,7 @@
 
   // Page Components
   import CreateAccount from "./_components/CreateAccount.svelte";
-	import ProfileDropdown from "./_components/ProfileDropdown.svelte";
+	import LoginDropdown from "./_components/LoginDropdown.svelte";
   
   // UI Components
   import { Button } from "$lib/components/ui/button"
@@ -42,7 +42,7 @@
   <section class="flex flex-col justify-center items-center bg-[#3a3a3a] shadow-lg p-12 mt-12 focus:outline-none focus:ring-2">
     <div id="profile-list">
       {#each data as { q }}
-        <ProfileDropdown profile={{ name: q }} />
+        <LoginDropdown profile={{ name: q }} />
       {/each}
     </div>
     <div id="create-account">
