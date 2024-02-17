@@ -11,7 +11,6 @@ import (
 
 	"github.com/alexedwards/argon2id"
 	"github.com/google/uuid"
-	"github.com/labstack/gommon/log"
 )
 
 type auth struct {
@@ -71,9 +70,6 @@ func (auth *auth) CreateAccount(username string, password string) (bool, error) 
 }
 
 func (auth *auth) Login(username string, password string) (*models.Account, error) {
-	log.Printf("the value of username is %v", username)
-	log.Printf("the value of password is %v", password)
-
 	if username == "" || password == "" {
 		return nil, fmt.Errorf("username and password cannot be empty")
 	}

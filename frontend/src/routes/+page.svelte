@@ -25,6 +25,9 @@
     {
       q: "John",
     },
+    {
+      q: "Sally Sparrow",
+    },
   ];
 
 </script>
@@ -39,20 +42,16 @@
     />
   </section>
 
-  <section class="flex flex-col justify-center items-center bg-[#3a3a3a] shadow-lg p-12 mt-12 focus:outline-none focus:ring-2">
+  <section class="flex flex-col justify-center items-center bg-[#3a3a3a] shadow-md shadow-black p-12 mt-12 focus:outline-none focus:ring-2">
     <div id="profile-list">
       {#each data as { q }}
         <LoginDropdown profile={{ name: q }} />
       {/each}
     </div>
-    <div id="create-account">
+    <div id="create-account" class="">
       <CreateAccount />
     </div>
   </section>
-
-  <Button href="/projects" class="flex flex-col justify-center items-center bg-[#3a3a3a] shadow-lg mt-12 text-lg focus:outline-none focus:ring-2">
-    Login Test Button
-  </Button>
 </main>
 
 <style lang="postcss">

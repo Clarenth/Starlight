@@ -21,10 +21,10 @@
   // use this to pull projects and documents from DB using
   // the context details
   function handleCreateAccount(username: string, password: string, confirmPassword: string) {
-    console.log(username)
-    console.log(password)
-    console.log(confirmPassword)
-    if (password != confirmPassword){return}
+    if (confirmPassword != password){
+      
+      return
+    }
     try {
       CreateAccount(username, password)
         .then(result => result)
@@ -67,7 +67,6 @@
     <form 
       method="post"
       on:submit|preventDefault={() => handleCreateAccount(username, password, confirmPassword)} 
-      use:enhance 
       class="flex flex-col items-center justify-center bg-[#474747] text-lg border border-separate border-[#252525]" class:hidden={!isOpen} transition:slide={{ duration: 300 }}
     >
       <label class="mt-2" for="profile-name">Profile Name</label>

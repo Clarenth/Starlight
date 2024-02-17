@@ -2,26 +2,36 @@
   // Svelte
   import { slide } from "svelte/transition";
   // Wails
-  import { Login, TestyLogin } from "$lib/wailsjs/go/auth/auth"
+  import { Login } from "$lib/wailsjs/go/auth/auth"
   // UI Components
 	import Button from "$lib/components/ui/button/button.svelte";
 	import Input from "$lib/components/ui/input/input.svelte";
 	import { enhance } from "$app/forms";
+	import { goto } from "$app/navigation";
   
   // JavaScript
   export let profile;
+
   const { name } = profile;
+  let password: string;
   let isOpen = false;
+  
   const toggle = () => (isOpen = !isOpen);
 
   const handleLogin = (password: string) => {
-    console.log(password)
-    Login(name, password)
-      .then((result: any) => {
-        console.log(result)
-      })
+    try {
+      Login(name, password)
+        .then((result: any) => {
+          const data = result;
+          console.log(data)
+          return data;
+        })
+        .catch(error => console.log(error))
+    } catch (error) {
+      console.log(error)
+      return error
+    }
   }
-  let password: string;
 </script>
 
 <button class="flex w-72 border-b border-separate border-white" on:click={toggle} aria-expanded={isOpen}
@@ -44,15 +54,14 @@
     <form 
       method="post"
       on:submit|preventDefault={() => handleLogin(password)} 
-      use:enhance
       class="flex flex-col items-center justify-center bg-[#474747] text-lg border border-separate border-[#252525]" class:hidden={!isOpen} transition:slide={{ duration: 300 }}
     >
-      <label class="mt-2" for="password">Password</label>
+      <label class="mt-2" for="password" hidden></label>
       <Input 
         id="password"  
         name="password" 
         type="password" 
-        placeholder="password"
+        placeholder="Password"
         bind:value={password}
         required
         class="flex items-center h-12 px-4 bg-[#252525] rounded-none text-white text-lg mt-2 mb-2 hover:bg-[#1b1b1b] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 

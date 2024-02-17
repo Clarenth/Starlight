@@ -27,7 +27,7 @@ func (sqlite *sqlite) GetAccount(ctx context.Context, username string, password 
 	// temp info
 	account := &models.Account{
 		ID:        uuid.New(),
-		Username:  "Crag Tarr",
+		Username:  username,
 		CreatedAt: time.Now().String(),
 		UpdatedAt: time.Now().String(),
 	}
