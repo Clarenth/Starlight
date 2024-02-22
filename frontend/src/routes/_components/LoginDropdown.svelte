@@ -1,30 +1,40 @@
 <script lang="ts">
   // Svelte
+  import { setContext, getContext } from "svelte" 
   import { slide } from "svelte/transition";
   // Wails
   import { Login } from "$lib/wailsjs/go/auth/auth"
+  // Stores
+  import { account } from "$lib/stores/account"
   // UI Components
 	import Button from "$lib/components/ui/button/button.svelte";
 	import Input from "$lib/components/ui/input/input.svelte";
-	import { enhance } from "$app/forms";
 	import { goto } from "$app/navigation";
-  
-  // JavaScript
-  export let profile;
 
-  const { name } = profile;
+  // Variables
+  export let profileName;
+  const { name } = profileName;
   let password: string;
   let isOpen = false;
-  
+
+  // Functions
   const toggle = () => (isOpen = !isOpen);
 
-  const handleLogin = (password: string) => {
+  const handleLogin = async(password: string) => {
+    // handle get && set context as well in coming future
     try {
       Login(name, password)
         .then((result: any) => {
           const data = result;
-          console.log(data)
-          return data;
+          account.set(data)
+        })
+        .then(() => {
+          if($account != null || undefined) {
+            goto("/projects")
+          }
+          else {
+            goto("/")
+          }
         })
         .catch(error => console.log(error))
     } catch (error) {
@@ -53,9 +63,9 @@
   {#key isOpen}
     <form 
       method="post"
-      on:submit|preventDefault={() => handleLogin(password)} 
+      on:submit|preventDefault={() => handleLogin(password)}
       class="flex flex-col items-center justify-center bg-[#474747] text-lg border border-separate border-[#252525]" class:hidden={!isOpen} transition:slide={{ duration: 300 }}
-    >
+    > <!--use:enhance <-- apply this later when we have a working prototype. Use this for enhancing the software. -->
       <label class="mt-2" for="password" hidden></label>
       <Input 
         id="password"  

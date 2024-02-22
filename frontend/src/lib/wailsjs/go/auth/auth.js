@@ -6,10 +6,10 @@ export function CreateAccount(arg1, arg2) {
   return window['go']['auth']['auth']['CreateAccount'](arg1, arg2);
 }
 
-export function Login(arg1, arg2) {
-  return window['go']['auth']['auth']['Login'](arg1, arg2);
+export function GenerateJWT() {
+  return window['go']['auth']['auth']['GenerateJWT']();
 }
 
-export function TestyLogin(arg1, arg2) {
-  return window['go']['auth']['auth']['TestyLogin'](arg1, arg2);
+export function Login(arg1, arg2) {
+  return window['go']['auth']['auth']['Login'](arg1, arg2);
 }

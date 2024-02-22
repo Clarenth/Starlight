@@ -1,5 +1,8 @@
 <script lang="ts">
-  // Libraries
+  // Svelte
+	import { onMount } from "svelte";
+  // Wails
+  import {} from "$lib/wailsjs/go/auth/auth";
 
   // Page Components
   import CreateAccount from "./_components/CreateAccount.svelte";
@@ -30,6 +33,9 @@
     },
   ];
 
+  onMount(() => {
+
+  })
 </script>
 <main id="main" class="flex flex-col justify-center items-center bg-[#252525] text-white text-lg py-16">
   <section id="img-logo" class="flex flex-col items-center justify-center h-auto text-white text-lg">
@@ -45,7 +51,7 @@
   <section class="flex flex-col justify-center items-center bg-[#3a3a3a] shadow-md shadow-black p-12 mt-12 focus:outline-none focus:ring-2">
     <div id="profile-list">
       {#each data as { q }}
-        <LoginDropdown profile={{ name: q }} />
+        <LoginDropdown profileName={{ name: q }} />
       {/each}
     </div>
     <div id="create-account" class="">

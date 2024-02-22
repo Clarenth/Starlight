@@ -4,6 +4,6 @@ import {models} from '../models';
 
 export function CreateAccount(arg1:string,arg2:string):Promise<boolean>;
 
-export function Login(arg1:string,arg2:string):Promise<models.Account>;
+export function GenerateJWT():Promise<void>;
 
-export function TestyLogin(arg1:string,arg2:string):Promise<string>;
+export function Login(arg1:string,arg2:string):Promise<models.Account>;

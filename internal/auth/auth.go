@@ -98,11 +98,6 @@ func (auth *auth) Login(username string, password string) (*models.Account, erro
 	return account, nil
 }
 
-func (auth *auth) TestyLogin(username string, password string) string {
-	result, err := auth.SQLite.TestyCreateAccount(username, password)
-	if err != nil {
-		return err.Error()
-	}
-
-	return result
+func (auth *auth) GenerateJWT() {
+	panic("Not done")
 }

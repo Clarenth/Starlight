@@ -1,4 +1,7 @@
 <script>
+  // Svelte
+  // Stores
+  import { account } from "$lib/stores/account";
   // Components
   import Sidebar from "./_components/Sidebar.svelte";
   import Notes from "./_components/notes/Notes.svelte";
@@ -6,7 +9,11 @@
 
   // UI Components
   import Button from "$lib/components/ui/button/button.svelte";
+	import { goto } from "$app/navigation";
 
+  if($account == null || undefined) {
+    goto("/")
+  }
   function isActive() {
 
   }
@@ -36,6 +43,14 @@
     id="drawer-navigation"
   >
     <div class="overflow-y-auto px-3 h-full">
+      <Button
+        type="button"
+        aria-controls="dropdown-pages"
+        data-collapse-toggle="dropdown-pages"
+        class="bg-[#3a3a3a] flex items-center py-6 mb-10 w-full text-base font-medium border border-gray-50/15 rounded-lg duration-75 group transition dark:text-white dark:hover:bg-gray-700"
+      >
+        Profile
+      </Button>
       <ul class="space-y-2">
         <li>
           <Button
