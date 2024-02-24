@@ -38,7 +38,7 @@
 
   <!-- Sidebar -->
   <aside
-    class="flex-none block top-0 left-0 z-40 w-36 pt-16 transition-transform -translate-x-full bg-default border-r-2 border-gray-400 md:translate-x-0"
+    class="flex-none block top-0 left-0 z-40 w-36 pt-16 transition-transform -translate-x-full bg-default  md:translate-x-0"
     aria-label="Sidenav"
     id="drawer-navigation"
   >
@@ -132,8 +132,7 @@
       </ul> -->
     </div>
   </aside>
-
-  
+    
   <!-- Project Table -->
   <main class="flex-1 flex flex-col overflow-hidden"> <!--p-4 md:ml-64 h-auto -->
     <!--Header-->
@@ -147,6 +146,9 @@
         </Button>
       </div>
     </nav>
+    
+    <h1 class="flex justify-center text-lg">Title of Project</h1>
+        
     <!-- Project Table -->
     <div class="px-6 py-1 flex-1 overflow-scroll">
       <Table />

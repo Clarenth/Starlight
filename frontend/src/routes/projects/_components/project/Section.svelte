@@ -1,4 +1,7 @@
 <script lang="ts">
+  // Svelte
+  import { flip } from "svelte/animate";
+  import { dndzone } from "svelte-dnd-action";
 
   // Components
 	import Button from "$lib/components/ui/button/button.svelte";
@@ -20,6 +23,30 @@
 
   let editSection = false;
   let addNewTask = false;
+
+  let items = [
+    {id: 1, name: "Hello test1", content: "from Seank"},
+    {id: 2, name: "Investigate qOwnNote for testing of the new", content: "Officially recognized by the Duden dictionary as the longest word in German, Kraftfahrzeughaftpflichtversicherung is a 36 letter word for motor vehicle liability insurance."},
+    {id: 3, name: "Linkin Survey results", content: "They show that JavaScript is a great high-concurrency language."},
+    {id: 4, name: "This app have been built using", content: "SVELTE SVELTE SVELTE SVELTE SVELTE SVELTE SVELTE SVELTE SVELTE SVELTE SVELTE SVELTE SVELTE ."},
+    {id: 5, name: "The source of the mysterious ticking", content: "Snape, Snape, Severus Snape. Snape, Snape, Severus Snape. Snape, Snape, Severus Snape. Snape, Snape, Severus Snape. Snape, Snape, Severus Snape."},
+    {id: 6, name: "Find a new base.", content: "We need a new base to attack Blue base."},
+    {id: 7, name: "Why did the toys cross the road?", content: "To get to the toy store on the other side!"},
+    {id: 8, name: "HAM", content: "HAM HAM HAM HAM HAM HAM HAM HAM HAM HAM HAM HAM HAM HAM HAM HAM HAM HAM ."},
+    {id: 9, name: "Beep Beep", content: "Nurgh!."},
+    {id: 10, name: "Create new greeting for the cryo patients", content: "Welcome to the world of tomorrow!!!"},
+    {id: 11, name: "Investigate qOwnNote for testing of the new", content: "Officially recognized by the Duden dictionary as the longest word in German, Kraftfahrzeughaftpflichtversicherung is a 36 letter word for motor vehicle liability insurance."},
+    {id: 12, name: "Investigate qOwnNote for testing of the new", content: "Officially recognized by the Duden dictionary as the longest word in German, Kraftfahrzeughaftpflichtversicherung is a 36 letter word for motor vehicle liability insurance."},
+    {id: 13, name: "Investigate qOwnNote for testing of the new", content: "Officially recognized by the Duden dictionary as the longest word in German, Kraftfahrzeughaftpflichtversicherung is a 36 letter word for motor vehicle liability insurance."},
+  ]
+
+  const flipDurationMs = 100;
+  function handleDndConsider(e:any ) {
+      items = e.detail.items;
+  }
+  function handleDndFinalize(e: any) {
+      items = e.detail.items;
+  }
 </script>
 
 <div class="flex-shrink-0 overflow-x-scroll pr-1">
@@ -58,14 +85,12 @@
     </div>
 {/if}
 
-<div class="space-y-1 overflow-y-scroll">
-  <Task />
-  <Task />
-  <Task />
-  <Task />
-  <Task />
-  <Task />
-  <Task />
+<div use:dndzone="{{items, flipDurationMs}}" on:consider="{handleDndConsider}" on:finalize="{handleDndFinalize}" class="space-y-1 overflow-y-scroll">
+  {#each items as task(task.id)}
+  <div class="border-" animate:flip="{{duration: flipDurationMs}}">
+      <Task title={task.name} content={task.content} />
+    </div>
+  {/each}
 </div>
 
 {#if addNewTask == false}

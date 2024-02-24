@@ -1,5 +1,4 @@
 <script>
-	import DndTest from "../DndTest.svelte";
 import NewSections from "./NewSections.svelte";
 	// import Section from "./section/Section.svelte";
 	import Section from "./Section.svelte";
@@ -10,8 +9,6 @@ import NewSections from "./NewSections.svelte";
 		<Section />
 	</div>
 </div>
-
-<DndTest />
 
 <style>
 
