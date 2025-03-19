@@ -1,26 +1,24 @@
 <script>
-  // Svelte
-  // Stores
-  import { account } from "$lib/stores/account";
-  // Components
-  import Sidebar from "./_components/Sidebar.svelte";
-  import Notes from "./_components/notes/Notes.svelte";
-  import Table from "./_components/project/Table.svelte";
+	// Svelte
+	// Stores
+	import { account } from '$lib/stores/account';
+	// Components
+	import Sidebar from './_components/Sidebar.svelte';
+	import Notes from './_components/notes/Notes.svelte';
+	import Table from './_components/project/Table.svelte';
 
-  // UI Components
-  import Button from "$lib/components/ui/button/button.svelte";
-	import { goto } from "$app/navigation";
+	// UI Components
+	import Button from '$lib/components/ui/button/button.svelte';
+	import { goto } from '$app/navigation';
 
-  if($account == null || undefined) {
-    goto("/")
-  }
-  function isActive() {
-
-  }
+	if ($account == null || undefined) {
+		goto('/');
+	}
+	function isActive() {}
 </script>
 
-<div class="antialiased h-screen flex  light:bg-white">
-  <!-- <nav class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
+<div class="flex h-screen antialiased light:bg-white">
+	<!-- <nav class="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
     <div class="flex flex-wrap justify-between items-center">
       <div class="flex justify-start items-center">
         <Button class="justify-center items-center gap bg-inherit shadow-lg text-base hover:bg-[#3a3a3a] focus:outline-none focus:ring-2">
@@ -36,34 +34,22 @@
     </div>
   </nav> -->
 
-  <!-- Sidebar -->
-  <aside
-    class="flex-none block top-0 left-0 z-40 w-36 pt-16 transition-transform -translate-x-full bg-default  md:translate-x-0"
-    aria-label="Sidenav"
-    id="drawer-navigation"
-  >
-    <div class="overflow-y-auto px-3 h-full">
-      <Button
-        type="button"
-        aria-controls="dropdown-pages"
-        data-collapse-toggle="dropdown-pages"
-        class="bg-[#3a3a3a] flex items-center py-6 mb-10 w-full text-base font-medium border border-gray-50/15 rounded-lg duration-75 group transition dark:text-white dark:hover:bg-gray-700"
-      >
-        Profile
-      </Button>
-      <ul class="space-y-2">
-        <li>
-          <Button
-            type="button"
-            class="bg-[#3a3a3a] flex items-center p-2 w-full text-base font-medium border border-gray-50/15 rounded-lg duration-75 group transition dark:text-white dark:hover:bg-gray-700"
-            aria-controls="dropdown-pages"
-            data-collapse-toggle="dropdown-pages"
-          >
-            Project#1
-          </Button>
-          <ul id="dropdown-pages" class="hidden py-2 space-y-2">
-          </ul>
-        </li>
+	<!-- Sidebar -->
+	<aside
+		class="relative flex-col top-0 left-0 z-40 w-48 pt-2 transition-transform -translate-x-full bg-[#2b2b2b] md:translate-x-0"
+		aria-label="Sidenav"
+		id="drawer-navigation"
+	>
+		<div class="relative flex-col px-3 h-full overflow-y-scroll overflow-x-clip">
+			<Button
+				type="button"
+				aria-controls="dropdown-pages"
+				data-collapse-toggle="dropdown-pages"
+				class="bg-[#3a3a3a] flex items-center mb-8 w-full text-base font-medium border border-gray-50/15 rounded-lg duration-75 group transition dark:text-white dark:hover:bg-gray-700"
+			>
+				Profile
+			</Button>
+      <Sidebar />
       <!-- <ul
         class="pt-5 mt-5 space-y-2 border-t border-pink-600 dark:border-gray-700"
       >
@@ -130,32 +116,42 @@
           </a>
         </li>
       </ul> -->
-    </div>
-  </aside>
-    
-  <!-- Project Table -->
-  <main class="flex-1 flex flex-col overflow-hidden"> <!--p-4 md:ml-64 h-auto -->
-    <!--Header-->
-    <nav class="flex px-6 py-2 items-center flex-none">
-      <div class="flex gap-2 flex-row">
-        <Button class="bg-[#3a3a3a] justify-center items-center gap border border-gray-50/15 shadow-lg text-base focus:outline-none focus:ring-2">
-          Tasks
-        </Button>
-        <Button class="bg-[#3a3a3a] justify-center items-center border border-gray-50/15 shadow-lg text-base focus:outline-none focus:ring-2">
-          Docs
-        </Button>
-      </div>
-    </nav>
-    
-    <h1 class="flex justify-center text-lg">Title of Project</h1>
-        
-    <!-- Project Table -->
-    <div class="px-6 py-1 flex-1 overflow-scroll">
-      <Table />
-    </div>
-  </main>
+			<!-- <ul class="space-y-2">
+				<li>
+          <Sidebar />
+					<ul id="dropdown-pages" class="hidden py-2 space-y-2"></ul>
+				</li>
+			</ul> -->
+		</div>
+	</aside>
+
+	<!-- Project Table -->
+	<main class="flex-1 flex flex-col overflow-hidden">
+		<!--p-4 md:ml-64 h-auto -->
+		<!--Header-->
+		<nav class="flex px-6 py-2 items-center flex-none">
+			<div class="flex gap-2 flex-row">
+				<Button
+					class="bg-[#3a3a3a] justify-center items-center gap border border-gray-50/15 shadow-lg text-base focus:outline-none focus:ring-2"
+				>
+					Tasks
+				</Button>
+				<Button
+					class="bg-[#3a3a3a] justify-center items-center border border-gray-50/15 shadow-lg text-base focus:outline-none focus:ring-2"
+				>
+					Docs
+				</Button>
+			</div>
+		</nav>
+
+		<h1 class="flex justify-center text-lg">Title of Project</h1>
+
+		<!-- Project Table -->
+		<div class="px-6 py-1 flex-1 overflow-scroll">
+			<Table />
+		</div>
+	</main>
 </div>
 
 <style>
-
 </style>

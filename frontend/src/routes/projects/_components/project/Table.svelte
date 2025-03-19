@@ -1,7 +1,7 @@
 <script>
-import NewSections from "./NewSections.svelte";
+	import NewSections from './NewSections.svelte';
 	// import Section from "./section/Section.svelte";
-	import Section from "./Section.svelte";
+	import Section from './Section.svelte';
 </script>
 
 <div class="flex flex-row gap-3 pl-1 pb-1 h-full cursor-auto overflow-x-scroll">
@@ -11,5 +11,4 @@ import NewSections from "./NewSections.svelte";
 </div>
 
 <style>
-
 </style>
