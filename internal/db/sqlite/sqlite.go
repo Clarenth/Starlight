@@ -21,7 +21,7 @@ type SQLite interface {
 	Close() error
 
 	CreateAccount(ctx context.Context, account *models.Account) (bool, error)
-	DeleteAccount(ctx context.Context, username string, password string) error
+	DeleteAccount(ctx context.Context, accountID string) error
 	GetAccount(ctx context.Context, username string, password string) (*models.Account, error)
 	UpdateAccount(ctx context.Context, username string, password string) error
 	TestyCreateAccount(username string, password string) (string, error)

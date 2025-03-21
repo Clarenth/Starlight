@@ -3,6 +3,7 @@ package sqlite
 import (
 	"context"
 	"fmt"
+	"log"
 	"time"
 
 	"starlight/internal/models"
@@ -21,7 +22,7 @@ func (sqlite *sqlite) CreateAccount(ctx context.Context, account *models.Account
 						`
 
 	if err := sqlite.DB.Get(account, query, account.ID, account.Username, account.Password, account.CreatedAt, account.UpdatedAt); err != nil {
-		fmt.Println(err)
+		log.Print(err)
 		return false, fmt.Errorf("error: could not create account")
 	}
 	return true, nil
@@ -36,11 +37,18 @@ func (sqlite *sqlite) GetAccount(ctx context.Context, username string, password 
 		UpdatedAt: time.Now().String(),
 	}
 	return account, nil
-	panic("Not completed")
 }
 
-func (sqlite *sqlite) DeleteAccount(ctx context.Context, username string, password string) error {
-	panic("Not completed")
+func (sqlite *sqlite) DeleteAccount(ctx context.Context, accountID string) error {
+	deleteQuery := `DELETE FROM accounts WHERE id = $1`
+
+	err := sqlite.DB.QueryRowContext(ctx, deleteQuery, accountID).Scan(&accountID)
+	if err != nil {
+		log.Printf("Error when deleting account with id %v", &accountID)
+		return err
+	}
+
+	return nil
 }
 
 func (sqlite *sqlite) UpdateAccount(ctx context.Context, username string, password string) error {
