@@ -11,13 +11,17 @@ import (
 )
 
 func (sqlite *sqlite) CreateAccount(ctx context.Context, account *models.Account) (bool, error) {
-	return false, nil
+	// return false, nil
+
+	fmt.Printf("ID: '%v', Username '%v', Password: '%v', CreatedAt: '%v', UpdatedAt: '%v'", account.ID, account.Username, account.Password, account.CreatedAt, account.UpdatedAt)
 
 	query := `INSERT OR IGNORE INTO accounts (id, username, password, created_at, updated_at) 
 						VALUES ($1, $2, $3, $4, $5)
+						RETURNING id, username, created_at, updated_at;
 						`
 
-	if err := sqlite.DB.Get(account, query); err != nil {
+	if err := sqlite.DB.Get(account, query, account.ID, account.Username, account.Password, account.CreatedAt, account.UpdatedAt); err != nil {
+		fmt.Println(err)
 		return false, fmt.Errorf("error: could not create account")
 	}
 	return true, nil

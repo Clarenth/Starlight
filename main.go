@@ -24,6 +24,8 @@ func main() {
 	db := db.NewDB()
 	auth := auth.NewAuth(app.ctx, db)
 
+	defer db.SQLite.Close()
+
 	go func() {
 		log.Println(http.ListenAndServe("localhost:6060", nil))
 	}()
@@ -46,6 +48,7 @@ func main() {
 		Bind: []interface{}{
 			app,
 			auth,
+			db,
 		},
 		// OnShutdown: ,
 		// OnBeforeClose: ,

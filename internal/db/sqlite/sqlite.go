@@ -18,6 +18,8 @@ type sqlite struct {
 }
 
 type SQLite interface {
+	Close() error
+
 	CreateAccount(ctx context.Context, account *models.Account) (bool, error)
 	DeleteAccount(ctx context.Context, username string, password string) error
 	GetAccount(ctx context.Context, username string, password string) (*models.Account, error)
@@ -55,7 +57,8 @@ func NewSqlite() (SQLite, error) {
 	if err != nil {
 		return nil, fmt.Errorf("sqlite failed to open: %w", err)
 	}
-	defer db.Close()
+
+	db.SetMaxOpenConns(1)
 
 	sqlite := &sqlite{
 		DB: db,
@@ -95,6 +98,8 @@ func NewSqlite() (SQLite, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	// err = sqlite.DBClose()
 
 	return sqlite, nil
 }
@@ -221,4 +226,8 @@ func (sqlite *sqlite) createNotesTable() error {
 		return fmt.Errorf("error in notes table")
 	}
 	return nil
+}
+
+func (sqlite *sqlite) Close() error {
+	return sqlite.DB.Close()
 }

@@ -141,6 +141,7 @@
 				>
 					Docs
 				</Button>
+        <a href="/" class="bg-slate-700">Debug_Logout</a>
 			</div>
 		</nav>
 

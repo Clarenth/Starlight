@@ -64,7 +64,7 @@ func (auth *auth) CreateAccount(username string, password string) (bool, error) 
 	ctx := auth.ctx
 	result, err := auth.SQLite.CreateAccount(ctx, &newAccount)
 	if err != nil {
-		panic("TODO")
+		panic("Failed to create account.")
 	}
 	return result, nil
 }
