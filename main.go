@@ -46,7 +46,6 @@ func main() {
 		Bind: []interface{}{
 			app,
 			auth,
-			db,
 		},
 		// OnShutdown: ,
 		// OnBeforeClose: ,

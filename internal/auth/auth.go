@@ -3,6 +3,7 @@ package auth
 import (
 	"context"
 	"fmt"
+	"log"
 	"time"
 
 	"starlight/internal/db"
@@ -44,14 +45,12 @@ func (auth *auth) CreateAccount(username string, password string) (bool, error) 
 
 	// implement argon2 hashing and salting here
 	// to protect passwords from plain text exposing
-	/*
-			hashedPassword, err := argon2id.CreateHash(accountData.Password, argon2Params)
-		if err != nil {
-			log.Panicf("Unable to encrypt accountData password from new Signup with given email: %v\n", accountData.Email)
-			return apperrors.NewInternal()
-		}
-		accountData.Password = hashedPassword //The hashed password is saved to the DB instead of the plain text. User Signin will compare the client's input password to the stored hash and validity
-	*/
+	hashedPassword, err := argon2id.CreateHash(password, argon2Params)
+	if err != nil {
+		log.Panicf("Unable to encrypt new user password in CreateAccount: %v\n", username)
+		return false, err
+	}
+	password = hashedPassword //The hashed password is saved to the DB instead of the plain text. User Signin will compare the client's input password to the stored hash and validity
 
 	newAccount := models.Account{
 		ID:        uuid.New(),
@@ -90,7 +89,7 @@ func (auth *auth) Login(username string, password string) (*models.Account, erro
 
 	*/
 
-	account, err := auth.SQLite.GetAccount(auth.ctx, username, password)
+	account, err := auth.SQLite.Login(auth.ctx, username, password)
 	if err != nil {
 		return nil, err
 	}

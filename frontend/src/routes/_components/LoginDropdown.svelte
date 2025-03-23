@@ -77,16 +77,23 @@
         required
         class="flex items-center h-12 px-4 bg-[#252525] rounded-none text-white text-lg mt-2 mb-2 hover:bg-[#1b1b1b] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
       />
-      <Button 
-        type="submit"
-        variant="default"
-        class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] rounded-none text-white text-lg mt-2 mb-2 hover:bg-[#1b1b1b] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
-        on:click={(e) => {
-          
-        }}
-      >
-        Login
-      </Button>
+      <div class="flex flex-row grow items-center gap-3">
+        <div class="flex items-center justify-center">
+          <Button 
+            type="submit"
+            variant="default"
+            class="flex cursor-pointer items-center h-12 px-4 bg-[#252525] rounded-none text-white text-lg mt-2 mb-2 hover:bg-[#1b1b1b] focus:bg-[#1b1b1b] focus:outline-none focus:ring-2" 
+            on:click={(e) => {
+              
+            }}
+          >
+            Login
+          </Button>
+        </div>
+        <div dir="rtl" class="start-0 top-0 justify-end items-end">
+          <DeleteAccount />
+        </div>
+      </div>
     </form>
   {/key}
 </div>

@@ -20,27 +20,34 @@ type sqlite struct {
 type SQLite interface {
 	Close() error
 
+	// Authentication
+	Login(ctx context.Context, username string, password string) (*models.Account, error)
+
+	// Account methods
 	CreateAccount(ctx context.Context, account *models.Account) (bool, error)
 	DeleteAccount(ctx context.Context, accountID string) error
-	GetAccount(ctx context.Context, username string, password string) (*models.Account, error)
+	GetAllAccounts(ctx context.Context) (*[]models.Account, error)
 	UpdateAccount(ctx context.Context, username string, password string) error
-	TestyCreateAccount(username string, password string) (string, error)
 
+	// Notes methods
 	CreateNote(ctx context.Context) error
 	DeleteNote(ctx context.Context) error
 	GetNote(ctx context.Context) error
 	UpdateNote(ctx context.Context) error
 
+	// Projetcs methods
 	CreateProject(ctx context.Context) error
 	DeleteProject(ctx context.Context) error
 	GetProject(ctx context.Context) error
 	UpdateProject(ctx context.Context) error
 
+	// Sections methods
 	CreateSection(ctx context.Context) error
 	GetSection(ctx context.Context) error
 	DeleteSection(ctx context.Context) error
 	UpdateSection(ctx context.Context) error
 
+	// Tasks methods
 	CreateTask(ctx context.Context) error
 	DeleteTask(ctx context.Context) error
 	GetTask(ctx context.Context) error

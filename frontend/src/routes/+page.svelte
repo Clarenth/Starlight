@@ -13,6 +13,8 @@
 
   // Assets
   import logo from "$lib/images/logo.png"
+	import DeleteAccount from "./_components/DeleteAccount.svelte";
+	import DeleteAllData from "./_components/DeleteAllData.svelte";
   
   /* Leave as example
   import { LoadAccountData, SaveUserToDB, PrintDB } from "$lib/wailsjs/go/repo/DB";
@@ -48,14 +50,20 @@
     />
   </section>
 
-  <section class="flex flex-col justify-center items-center bg-[#3a3a3a] shadow-md shadow-black p-12 mt-12 focus:outline-none focus:ring-2">
-    <div id="profile-list">
-      {#each data as { q }}
+  <section class=" bg-[#3a3a3a] shadow-md shadow-black p-9 mt-12 focus:outline-none focus:ring-2">
+    <div class="flex flex-col justify-center items-center">
+      <div id="profile-list">
+        {#each data as { q }}
         <LoginDropdown profileName={{ name: q }} />
-      {/each}
+        {/each}
+      </div>
+      <div id="create-account" class="">
+        <CreateAccount />
+      </div>
     </div>
-    <div id="create-account" class="">
-      <CreateAccount />
+    <div id="delete-account" class="flex mt-6 items-end justify-end">
+      <!-- Here we need to ask for the user's OS password (Linux, Windows) to delete the data-->
+      <DeleteAllData />
     </div>
   </section>
 </main>

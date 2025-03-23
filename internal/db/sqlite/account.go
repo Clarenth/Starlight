@@ -4,13 +4,16 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"time"
 
 	"starlight/internal/models"
-
-	"github.com/google/uuid"
 )
 
+// Authentication
+func (sqlite *sqlite) Login(ctx context.Context, username string, password string) (*models.Account, error) {
+	return nil, nil
+}
+
+// Account methods
 func (sqlite *sqlite) CreateAccount(ctx context.Context, account *models.Account) (bool, error) {
 	// return false, nil
 
@@ -28,15 +31,14 @@ func (sqlite *sqlite) CreateAccount(ctx context.Context, account *models.Account
 	return true, nil
 }
 
-func (sqlite *sqlite) GetAccount(ctx context.Context, username string, password string) (*models.Account, error) {
-	// temp info
-	account := &models.Account{
-		ID:        uuid.New(),
-		Username:  username,
-		CreatedAt: time.Now().String(),
-		UpdatedAt: time.Now().String(),
+func (sqlite *sqlite) GetAllAccounts(ctx context.Context) (*[]models.Account, error) {
+	accounts := &[]models.Account{}
+	query := `SELECT * from accounts;`
+	if err := sqlite.DB.SelectContext(ctx, accounts, query); err != nil {
+		log.Printf("error in retriving AllAccounts from DB: %v", err)
+		return nil, err
 	}
-	return account, nil
+	return accounts, nil
 }
 
 func (sqlite *sqlite) DeleteAccount(ctx context.Context, accountID string) error {
@@ -53,18 +55,4 @@ func (sqlite *sqlite) DeleteAccount(ctx context.Context, accountID string) error
 
 func (sqlite *sqlite) UpdateAccount(ctx context.Context, username string, password string) error {
 	panic("Not completed")
-}
-
-func (sqlite *sqlite) TestyCreateAccount(username string, password string) (string, error) {
-	account := models.Account{
-		ID:        uuid.New(),
-		Username:  username,
-		Password:  password,
-		CreatedAt: time.Now().String(),
-		UpdatedAt: time.Now().String(),
-	}
-	if (models.Account{} == account) {
-		return "", fmt.Errorf("zero value was detected in TestyCreateAccount")
-	}
-	return fmt.Sprint("Hello from TestyCreateAccount"), nil
 }

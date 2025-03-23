@@ -7,7 +7,7 @@
 <Button
   type="button"
   variant="destructive"
-  class=""
+  class="shadow-lg rounded-none"
 >
   Delete
 </Button>
