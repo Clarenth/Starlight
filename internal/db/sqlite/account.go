@@ -9,8 +9,16 @@ import (
 )
 
 // Authentication
-func (sqlite *sqlite) Login(ctx context.Context, username string, password string) (*models.Account, error) {
-	return nil, nil
+// func (sqlite *sqlite) Login(ctx context.Context, username string, password string) (*models.Account, error) {
+// 	return nil, nil
+// }
+
+type Account interface {
+	// Account methods
+	CreateAccount(ctx context.Context, account *models.Account) (bool, error)
+	DeleteAccount(ctx context.Context, accountID string) error
+	GetAllAccounts(ctx context.Context) (*[]models.Account, error)
+	UpdateAccount(ctx context.Context, username string, password string) error
 }
 
 // Account methods
@@ -33,7 +41,7 @@ func (sqlite *sqlite) CreateAccount(ctx context.Context, account *models.Account
 
 func (sqlite *sqlite) GetAllAccounts(ctx context.Context) (*[]models.Account, error) {
 	accounts := &[]models.Account{}
-	query := `SELECT * from accounts;`
+	query := `SELECT id, username from accounts;`
 	if err := sqlite.DB.SelectContext(ctx, accounts, query); err != nil {
 		log.Printf("error in retriving AllAccounts from DB: %v", err)
 		return nil, err

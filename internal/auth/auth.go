@@ -68,26 +68,24 @@ func (auth *auth) CreateAccount(username string, password string) (bool, error) 
 	return result, nil
 }
 
-func (auth *auth) Login(username string, password string) (*models.Account, error) {
+func (auth *auth) Login(id uuid.UUID, username string, password string) (*models.Account, error) {
 	if username == "" || password == "" {
 		return nil, fmt.Errorf("username and password cannot be empty")
 	}
 
-	// implement Argon2 hash and salt checking here
-	// this for ensuring security
-	/*
+	// Here this will take in the user ID and password. The ID and Username will be sent to the frontend
+	// when the app is booted up for the first time (if it has not been opened or closed that day)
+	// account, err := auth.SQLite.GetPassword()
 
-		// Verify the password against the hash
-		accountMatch, err := argon2id.ComparePasswordAndHash(payload.Password, account.Password)
-		if err != nil {
-			log.Printf("Error: Could not ComparePasswordAndHash successfully")
-			return nil, apperrors.NewInternal()
-		}
-		if !accountMatch {
-			return nil, apperrors.NewAuthorization("Debug 2 Invalid email or password boolean")
-		}
-
-	*/
+	// Verify the password against the hash
+	accountMatch, err := argon2id.ComparePasswordAndHash(password, account.Password)
+	if err != nil {
+		log.Printf("Error: Could not ComparePasswordAndHash successfully")
+		return nil, fmt.Errorf("Error: Could not ComparePasswordAndHash successfully", err)
+	}
+	if !accountMatch {
+		return nil, fmt.Errorf("Debug 2 Invalid email or password boolean: %v", err)
+	}
 
 	account, err := auth.SQLite.Login(auth.ctx, username, password)
 	if err != nil {
