@@ -7,6 +7,8 @@ import (
 	"starlight/internal/db"
 	"starlight/internal/db/sqlite"
 	"starlight/internal/models"
+
+	"github.com/google/uuid"
 )
 
 type account struct {
@@ -21,11 +23,21 @@ func NewAccount(ctx context.Context, db *db.DB) *account {
 	}
 }
 
-func (account *account) GetAccounts() (*[]models.Account, error) {
-	accounts, err := account.SQLite.GetAllAccounts(account.ctx)
+func (account *account) GetOneAccount(id uuid.UUID) (*models.Account, error) {
+	idString := id.String()
+	data, err := account.SQLite.GetAccountData(idString)
 	if err != nil {
-		log.Printf("error in GetAccounts: %v", err)
+		log.Panicf("blah")
 		return nil, err
 	}
-	return accounts, nil
+	return data, nil
+}
+
+func (account *account) GetAccounts() *[]models.Account {
+	accounts, err := account.SQLite.GetAllAccounts()
+	if err != nil {
+		log.Printf("error in GetAccounts: %v", err)
+		return nil
+	}
+	return accounts
 }

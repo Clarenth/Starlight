@@ -94,7 +94,7 @@ func (auth *auth) Login(id uuid.UUID, username string, password string) (*models
 		return nil, errors.New("invalid password")
 	}
 
-	account, err := auth.SQLite.GetAccountData(auth.ctx, idString)
+	account, err := auth.SQLite.GetAccountData(idString)
 	if err != nil {
 		return nil, errors.New("failed to get account data")
 	}

@@ -17,8 +17,8 @@ type Account interface {
 	// Account methods
 	CreateAccount(ctx context.Context, account *models.Account) (bool, error)
 	DeleteAccount(ctx context.Context, accountID string) error
-	GetAccountData(ctx context.Context, id string) (*models.Account, error)
-	GetAllAccounts(ctx context.Context) (*[]models.Account, error)
+	GetAccountData(id string) (*models.Account, error)
+	GetAllAccounts() (*[]models.Account, error)
 	UpdateAccount(ctx context.Context, username string, password string) error
 }
 
@@ -52,21 +52,24 @@ func (sqlite *sqlite) DeleteAccount(ctx context.Context, accountID string) error
 	return nil
 }
 
-func (sqlite *sqlite) GetAllAccounts(ctx context.Context) (*[]models.Account, error) {
+// Starlight: look into why CTX in account and likely auth are nil. Why is there no ctx?
+func (sqlite *sqlite) GetAllAccounts() (*[]models.Account, error) {
 	accounts := &[]models.Account{}
 	query := `SELECT id, username from accounts;`
-	if err := sqlite.DB.SelectContext(ctx, accounts, query); err != nil {
+	// if err := sqlite.DB.SelectContext(ctx, accounts, query); err != nil {
+	if err := sqlite.DB.Select(accounts, query); err != nil {
 		log.Printf("error in retriving AllAccounts from DB: %v", err)
 		return nil, err
 	}
 	return accounts, nil
 }
 
-func (sqlite *sqlite) GetAccountData(ctx context.Context, id string) (*models.Account, error) {
+// Starlight: look into why CTX in account and likely auth are nil. Why is there no ctx?
+func (sqlite *sqlite) GetAccountData(id string) (*models.Account, error) {
 	account := &models.Account{}
 	query := `SELECT id, username, created_at, updated_at FROM accounts WHERE id = $1;`
 
-	if err := sqlite.DB.GetContext(ctx, account, query, id); err != nil {
+	if err := sqlite.DB.Get(account, query, id); err != nil {
 		log.Printf("error in GetAccountData: %v", err)
 		return nil, err
 	}

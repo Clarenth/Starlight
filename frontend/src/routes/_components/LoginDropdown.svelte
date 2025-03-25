@@ -2,6 +2,7 @@
   // Svelte
   import { setContext, getContext } from "svelte" 
   import { slide } from "svelte/transition";
+	import { goto } from "$app/navigation";
   // Wails
   import { Login } from "$lib/wailsjs/go/auth/auth"
   // Stores
@@ -9,12 +10,11 @@
   // UI Components
 	import Button from "$lib/components/ui/button/button.svelte";
 	import Input from "$lib/components/ui/input/input.svelte";
-	import { goto } from "$app/navigation";
 	import DeleteAccount from "./DeleteAccount.svelte";
 
   // Variables
-  export let profileName;
-  const { name } = profileName;
+  export let profiles: any;
+  const { id, username, created_at, updated_at } = profiles;
   let password: string;
   let isOpen = false;
 
@@ -24,7 +24,7 @@
   const handleLogin = async(password: string) => {
     // handle get && set context as well in coming future
     try {
-      Login(name, password)
+      Login(id, username, password)
         .then((result: any) => {
           const data = result;
           account.set(data)
@@ -57,7 +57,7 @@
     viewBox="0 0 24 24"
     stroke="currentColor"><path d="M9 5l7 7-7 7" /></svg
   >
-  {name}
+  {username}
 </button>
 
 <div class="mt-4 mb-4 shadow-xl">
