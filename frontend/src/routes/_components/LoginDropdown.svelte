@@ -91,7 +91,7 @@
           </Button>
         </div>
         <div dir="rtl" class="start-0 top-0 justify-end items-end">
-          <DeleteAccount />
+          <DeleteAccount profileID={id} />
         </div>
       </div>
     </form>

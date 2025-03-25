@@ -57,10 +57,10 @@ func (auth *auth) CreateAccount(username string, password string) (bool, error) 
 		ID:        uuid.New(),
 		Username:  username,
 		Password:  password,
-		CreatedAt: time.UTC.String(),
-		UpdatedAt: time.UTC.String(),
+		CreatedAt: time.Now().UTC().String(),
+		UpdatedAt: time.Now().UTC().String(),
 	}
-	// fmt.Sprintln(newAccount)
+	fmt.Sprintln(newAccount)
 	ctx := auth.ctx
 	result, err := auth.SQLite.CreateAccount(ctx, &newAccount)
 	if err != nil {
@@ -69,16 +69,20 @@ func (auth *auth) CreateAccount(username string, password string) (bool, error) 
 	return result, nil
 }
 
-func (auth *auth) Login(id uuid.UUID, username string, password string) (*models.Account, error) {
+func (auth *auth) Login(id string, username string, password string) (*models.Account, error) {
 	if username == "" || password == "" {
 		return nil, fmt.Errorf("username and password cannot be empty")
 	}
 
-	idString := id.String()
+	if uuid.Validate(id) != nil {
+		return nil, errors.New("profile ID is invalid")
+	}
+
+	// idString := id.String()
 
 	// Here this will take in the user ID and password. The ID and Username will be sent to the frontend
 	// when the app is booted up for the first time (if it has not been opened or closed that day)
-	hash, err := auth.SQLite.GetPasswordHash(auth.ctx, idString)
+	hash, err := auth.SQLite.GetPasswordHash(id)
 	if err != nil {
 		log.Printf("Could not retrived Password Hash: %v", err)
 		return nil, err
@@ -94,7 +98,7 @@ func (auth *auth) Login(id uuid.UUID, username string, password string) (*models
 		return nil, errors.New("invalid password")
 	}
 
-	account, err := auth.SQLite.GetAccountData(idString)
+	account, err := auth.SQLite.GetAccountData(id)
 	if err != nil {
 		return nil, errors.New("failed to get account data")
 	}

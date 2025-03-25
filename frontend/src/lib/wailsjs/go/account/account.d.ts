@@ -3,6 +3,8 @@
 import {uuid} from '../models';
 import {models} from '../models';
 
-export function GetAccounts():Promise<any>;
+export function DeleteAccount(arg1:string):Promise<void>;
+
+export function GetAllAccounts():Promise<any>;
 
 export function GetOneAccount(arg1:uuid.UUID):Promise<models.Account>;

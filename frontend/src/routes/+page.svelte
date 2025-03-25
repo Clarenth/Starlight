@@ -3,7 +3,7 @@
 	import { onMount } from "svelte";
   // Wails
   import {} from "$lib/wailsjs/go/auth/auth";
-	import { GetAccounts, GetOneAccount } from "$lib/wailsjs/go/account/account";
+	import { GetAllAccounts, GetOneAccount } from "$lib/wailsjs/go/account/account";
 
   // Page Components
   import CreateAccount from "./_components/CreateAccount.svelte";
@@ -29,15 +29,9 @@
   */
 
   let accounts:any = [];
-  let oneAccount: any;
-  async function getOneAccount() {
-    oneAccount = await GetOneAccount()
-    console.log(oneAccount)
-    return oneAccount;
-  }
 
   async function getManyAccounts() {
-    accounts = await GetAccounts()
+    accounts = await GetAllAccounts()
     console.log(accounts)
     return accounts
   }
@@ -64,8 +58,6 @@
 
   <section class=" bg-[#3a3a3a] shadow-md shadow-black p-9 mt-12 focus:outline-none focus:ring-2">
     <div class="flex flex-col justify-center items-center">
-      <button on:click={getOneAccount}>Click Me</button>
-      <button on:click={consoleLogAccounts}>console.log Accounts</button>
       <!-- TODO in future, make sure the screen does not rerender when a new user is made -->
       <div id="profile-list">
         {#each accounts as profile}
