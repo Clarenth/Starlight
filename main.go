@@ -4,6 +4,7 @@ import (
 	"context"
 	"embed"
 
+	"starlight/internal/account"
 	"starlight/internal/auth"
 	"starlight/internal/db"
 
@@ -21,6 +22,7 @@ func main() {
 	app := NewApp()
 	db := db.NewDB()
 	auth := auth.NewAuth(app.ctx, db)
+	account := account.NewAccount(app.ctx, db)
 
 	defer db.SQLite.Close()
 
@@ -45,6 +47,7 @@ func main() {
 		// OnStartup: app.startup,
 		Bind: []interface{}{
 			app,
+			account,
 			auth,
 		},
 		// OnShutdown: ,

@@ -10,6 +10,6 @@ export function GenerateJWT() {
   return window['go']['auth']['auth']['GenerateJWT']();
 }
 
-export function Login(arg1, arg2) {
-  return window['go']['auth']['auth']['Login'](arg1, arg2);
+export function Login(arg1, arg2, arg3) {
+  return window['go']['auth']['auth']['Login'](arg1, arg2, arg3);
 }

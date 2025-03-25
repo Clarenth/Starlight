@@ -2,6 +2,7 @@ package auth
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log"
 	"time"
@@ -73,23 +74,29 @@ func (auth *auth) Login(id uuid.UUID, username string, password string) (*models
 		return nil, fmt.Errorf("username and password cannot be empty")
 	}
 
+	idString := id.String()
+
 	// Here this will take in the user ID and password. The ID and Username will be sent to the frontend
 	// when the app is booted up for the first time (if it has not been opened or closed that day)
-	// account, err := auth.SQLite.GetPassword()
+	hash, err := auth.SQLite.GetPasswordHash(auth.ctx, idString)
+	if err != nil {
+		log.Printf("Could not retrived Password Hash: %v", err)
+		return nil, err
+	}
 
 	// Verify the password against the hash
-	accountMatch, err := argon2id.ComparePasswordAndHash(password, account.Password)
+	accountMatch, err := argon2id.ComparePasswordAndHash(password, hash)
 	if err != nil {
 		log.Printf("Error: Could not ComparePasswordAndHash successfully")
-		return nil, fmt.Errorf("Error: Could not ComparePasswordAndHash successfully", err)
+		return nil, errors.New("invalid password")
 	}
 	if !accountMatch {
-		return nil, fmt.Errorf("Debug 2 Invalid email or password boolean: %v", err)
+		return nil, errors.New("invalid password")
 	}
 
-	account, err := auth.SQLite.Login(auth.ctx, username, password)
+	account, err := auth.SQLite.GetAccountData(auth.ctx, idString)
 	if err != nil {
-		return nil, err
+		return nil, errors.New("failed to get account data")
 	}
 
 	return account, nil
